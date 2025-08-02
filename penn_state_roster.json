@@ -1,0 +1,742 @@
+{
+  "players": [
+    {
+      "number": 0,
+      "position": "LB",
+      "name": "Dominic DeLuca",
+      "phonetic_name": "DOMINIC DELUCA"
+    },
+    {
+      "number": 1,
+      "position": "S",
+      "name": "Jaylen Reed",
+      "phonetic_name": "JAYLEN REED"
+    },
+    {
+      "number": 2,
+      "position": "WR",
+      "name": "Liam Clifford",
+      "phonetic_name": "LIAM CLIFFORD"
+    },
+    {
+      "number": 2,
+      "position": "S",
+      "name": "Kevin Winston Jr.",
+      "phonetic_name": "KEVIN WINSTON JR."
+    },
+    {
+      "number": 3,
+      "position": "WR",
+      "name": "Julian Fleming",
+      "phonetic_name": "JULIAN FLEMING"
+    },
+    {
+      "number": 3,
+      "position": "CB",
+      "name": "Jalen Kimber",
+      "phonetic_name": "JALEN KIMBER"
+    },
+    {
+      "number": 4,
+      "position": "WR",
+      "name": "Tyseer Denmark",
+      "phonetic_name": "Ty-SEAR Denmark"
+    },
+    {
+      "number": 4,
+      "position": "CB",
+      "name": "A.J. Harris",
+      "phonetic_name": "A.J. HARRIS"
+    },
+    {
+      "number": 5,
+      "position": "WR",
+      "name": "Omari Evans",
+      "phonetic_name": "OMARI EVANS"
+    },
+    {
+      "number": 5,
+      "position": "CB",
+      "name": "Cam Miller",
+      "phonetic_name": "CAM MILLER"
+    },
+    {
+      "number": 6,
+      "position": "WR",
+      "name": "Harrison Wallace III",
+      "phonetic_name": "HARRISON WALLACE III"
+    },
+    {
+      "number": 6,
+      "position": "S",
+      "name": "Zakee Wheatley",
+      "phonetic_name": "ZACK-key Wheatley"
+    },
+    {
+      "number": 7,
+      "position": "WR",
+      "name": "Kaden Saunders",
+      "phonetic_name": "KADEN SAUNDERS"
+    },
+    {
+      "number": 7,
+      "position": "CB",
+      "name": "Zion Tracy",
+      "phonetic_name": "ZION TRACY"
+    },
+    {
+      "number": 8,
+      "position": "LB",
+      "name": "DaKaari Nelson",
+      "phonetic_name": "dah-KARR-ee Nelson"
+    },
+    {
+      "number": 9,
+      "position": "CB",
+      "name": "Elliot Washington II",
+      "phonetic_name": "ELLIOT WASHINGTON II"
+    },
+    {
+      "number": 10,
+      "position": "S",
+      "name": "Dejuan Lane",
+      "phonetic_name": "Day-zhon Lane"
+    },
+    {
+      "number": 10,
+      "position": "RB",
+      "name": "Nicholas Singleton",
+      "phonetic_name": "NICHOLAS SINGLETON"
+    },
+    {
+      "number": 11,
+      "position": "DE",
+      "name": "Abdul Carter",
+      "phonetic_name": "ABDUL CARTER"
+    },
+    {
+      "number": 11,
+      "position": "WR",
+      "name": "Tyler Johnson",
+      "phonetic_name": "TYLER JOHNSON"
+    },
+    {
+      "number": 12,
+      "position": "WR",
+      "name": "Anthony Ivey",
+      "phonetic_name": "ANTHONY IVEY"
+    },
+    {
+      "number": 12,
+      "position": "CB",
+      "name": "Jon Mitchell",
+      "phonetic_name": "JON MITCHELL"
+    },
+    {
+      "number": 13,
+      "position": "RB",
+      "name": "Kaytron Allen",
+      "phonetic_name": "KAYTRON ALLEN"
+    },
+    {
+      "number": 13,
+      "position": "LB",
+      "name": "Tony Rojas",
+      "phonetic_name": "TONY ROJAS"
+    },
+    {
+      "number": 14,
+      "position": "S",
+      "name": "Tyrece Mills",
+      "phonetic_name": "TYRECE MILLS"
+    },
+    {
+      "number": 14,
+      "position": "QB",
+      "name": "Jaxon Smolik",
+      "phonetic_name": "Jackson SMOLE-ick"
+    },
+    {
+      "number": 15,
+      "position": "QB",
+      "name": "Drew Allar",
+      "phonetic_name": "Drew AL-ler"
+    },
+    {
+      "number": 15,
+      "position": "DE",
+      "name": "Amin Vanover",
+      "phonetic_name": "ah-MEEN Vanover"
+    },
+    {
+      "number": 16,
+      "position": "TE",
+      "name": "Khalil Dinkins",
+      "phonetic_name": "kuh-LEEL Dinkins"
+    },
+    {
+      "number": 17,
+      "position": "QB",
+      "name": "Ethan Grunkemeyer",
+      "phonetic_name": "Ethan Grunk-a-meyer"
+    },
+    {
+      "number": 17,
+      "position": "CB",
+      "name": "Kenny Woseley Jr.",
+      "phonetic_name": "KENNY WOSELEY JR."
+    },
+    {
+      "number": 18,
+      "position": "DE",
+      "name": "Max Granville",
+      "phonetic_name": "MAX GRANVILLE"
+    },
+    {
+      "number": 18,
+      "position": "TE",
+      "name": "Joey Schlaffer",
+      "phonetic_name": "Joey sh-LAHF-er"
+    },
+    {
+      "number": 19,
+      "position": "WR",
+      "name": "Josiah Brown",
+      "phonetic_name": "JOSIAH BROWN"
+    },
+    {
+      "number": 19,
+      "position": "QB",
+      "name": "Jack Lambert",
+      "phonetic_name": "JACK LAMBERT"
+    },
+    {
+      "number": 20,
+      "position": "DE",
+      "name": "Mylachi Williams",
+      "phonetic_name": "Malachi Williams"
+    },
+    {
+      "number": 21,
+      "position": "S",
+      "name": "Vaboue Toure",
+      "phonetic_name": "Va-Boo Tore-A"
+    },
+    {
+      "number": 23,
+      "position": "CB",
+      "name": "Antoine Belgrave-Shorter",
+      "phonetic_name": "ANTOINE BELGRAVE-SHORTER"
+    },
+    {
+      "number": 24,
+      "position": "LB",
+      "name": "Ta'Mere Robinson",
+      "phonetic_name": "TA'MERE ROBINSON"
+    },
+    {
+      "number": 24,
+      "position": "RB",
+      "name": "Corey Smith",
+      "phonetic_name": "COREY SMITH"
+    },
+    {
+      "number": 25,
+      "position": "RB",
+      "name": "Quinton Martin Jr.",
+      "phonetic_name": "QUINTON MARTIN JR."
+    },
+    {
+      "number": 26,
+      "position": "RB",
+      "name": "Cam Wallace",
+      "phonetic_name": "CAM WALLACE"
+    },
+    {
+      "number": 27,
+      "position": "S",
+      "name": "Lamont Payne Jr.",
+      "phonetic_name": "LAMONT PAYNE JR."
+    },
+    {
+      "number": 28,
+      "position": "DT",
+      "name": "Zane Durant",
+      "phonetic_name": "ZANE DURANT"
+    },
+    {
+      "number": 28,
+      "position": "S",
+      "name": "Karson Kiesewetter",
+      "phonetic_name": "KARSON KIESEWETTER"
+    },
+    {
+      "number": 29,
+      "position": "CB",
+      "name": "Audavion Collins",
+      "phonetic_name": "ah-DAY-vee-on Collins"
+    },
+    {
+      "number": 30,
+      "position": "RB",
+      "name": "Amiel Davis",
+      "phonetic_name": "ah-MEEL Davis"
+    },
+    {
+      "number": 30,
+      "position": "LB",
+      "name": "Kari Jackson",
+      "phonetic_name": "KARI JACKSON"
+    },
+    {
+      "number": 31,
+      "position": "WR",
+      "name": "Logan Cunningham",
+      "phonetic_name": "LOGAN CUNNINGHAM"
+    },
+    {
+      "number": 31,
+      "position": "S",
+      "name": "Kolin Dinkins",
+      "phonetic_name": "KOLIN DINKINS"
+    },
+    {
+      "number": 32,
+      "position": "LB",
+      "name": "Keon Wylie",
+      "phonetic_name": "Keon WHY-lee"
+    },
+    {
+      "number": 33,
+      "position": "DE",
+      "name": "Dani Dennis-Sutton",
+      "phonetic_name": "deh-NYE Dennis-Sutton"
+    },
+    {
+      "number": 34,
+      "position": "RB",
+      "name": "Tyler Holzworth",
+      "phonetic_name": "TYLER HOLZWORTH"
+    },
+    {
+      "number": 35,
+      "position": "CB",
+      "name": "Tyler Armstead",
+      "phonetic_name": "TYLER ARMSTEAD"
+    },
+    {
+      "number": 35,
+      "position": "LS",
+      "name": "Blaise Sokach-Minnick",
+      "phonetic_name": "Blaze SO-katch-min-ick"
+    },
+    {
+      "number": 36,
+      "position": "DE",
+      "name": "Zuriah Fisher",
+      "phonetic_name": "ZURIAH FISHER"
+    },
+    {
+      "number": 37,
+      "position": "LB",
+      "name": "Beckham Dee",
+      "phonetic_name": "BECKHAM DEE"
+    },
+    {
+      "number": 38,
+      "position": "LB",
+      "name": "Winston Yates",
+      "phonetic_name": "WINSTON YATES"
+    },
+    {
+      "number": 39,
+      "position": "DT",
+      "name": "Ty Blanding",
+      "phonetic_name": "TY BLANDING"
+    },
+    {
+      "number": 39,
+      "position": "S",
+      "name": "Jashaun Green",
+      "phonetic_name": "ja-SEAN Green"
+    },
+    {
+      "number": 40,
+      "position": "LB",
+      "name": "Anthony Speca",
+      "phonetic_name": "ANTHONY SPECA"
+    },
+    {
+      "number": 41,
+      "position": "LB",
+      "name": "Kobe King",
+      "phonetic_name": "KOBE KING"
+    },
+    {
+      "number": 42,
+      "position": "DE",
+      "name": "Mason Robinson",
+      "phonetic_name": "MASON ROBINSON"
+    },
+    {
+      "number": 43,
+      "position": "LB",
+      "name": "Tyler Elsdon",
+      "phonetic_name": "TYLER ELSDON"
+    },
+    {
+      "number": 44,
+      "position": "DE",
+      "name": "Jaylen Harvey",
+      "phonetic_name": "JAYLEN HARVEY"
+    },
+    {
+      "number": 44,
+      "position": "TE",
+      "name": "Tyler Warren",
+      "phonetic_name": "TYLER WARREN"
+    },
+    {
+      "number": 45,
+      "position": "LB",
+      "name": "Jackson Pryts",
+      "phonetic_name": "Jackson PRITS"
+    },
+    {
+      "number": 47,
+      "position": "ATH",
+      "name": "Will Patton",
+      "phonetic_name": "WILL PATTON"
+    },
+    {
+      "number": 47,
+      "position": "DE",
+      "name": "Aidan Probst",
+      "phonetic_name": "AIDAN PROBST"
+    },
+    {
+      "number": 48,
+      "position": "LS",
+      "name": "Tyler Duzansky",
+      "phonetic_name": "TYLER DUZANSKY"
+    },
+    {
+      "number": 49,
+      "position": "LB",
+      "name": "Ben Chizmar",
+      "phonetic_name": "BEN CHIZMAR"
+    },
+    {
+      "number": 50,
+      "position": "OL",
+      "name": "Cooper Cousins",
+      "phonetic_name": "COOPER COUSINS"
+    },
+    {
+      "number": 50,
+      "position": "DT",
+      "name": "Alonzo Ford Jr.",
+      "phonetic_name": "ALONZO FORD JR."
+    },
+    {
+      "number": 52,
+      "position": "OL",
+      "name": "Dominic Rulli",
+      "phonetic_name": "Dominic RULE-ee"
+    },
+    {
+      "number": 53,
+      "position": "OL",
+      "name": "Nick Dawkins",
+      "phonetic_name": "NICK DAWKINS"
+    },
+    {
+      "number": 54,
+      "position": "DT",
+      "name": "Xavier Gilliam",
+      "phonetic_name": "XAVIER GILLIAM"
+    },
+    {
+      "number": 54,
+      "position": "OL",
+      "name": "Ian Harvie",
+      "phonetic_name": "IAN HARVIE"
+    },
+    {
+      "number": 55,
+      "position": "OL",
+      "name": "Chimdy Onoh",
+      "phonetic_name": "CHIM-dee OH-no"
+    },
+    {
+      "number": 56,
+      "position": "DT",
+      "name": "Joseph Mupoyi",
+      "phonetic_name": "Joseph moo-POY"
+    },
+    {
+      "number": 56,
+      "position": "OL",
+      "name": "JB Nelson",
+      "phonetic_name": "JB NELSON"
+    },
+    {
+      "number": 57,
+      "position": "OL",
+      "name": "Donnie Harbour",
+      "phonetic_name": "DONNIE HARBOUR"
+    },
+    {
+      "number": 58,
+      "position": "DT",
+      "name": "Kaleb Artis",
+      "phonetic_name": "Kaleb ar-TISS"
+    },
+    {
+      "number": 60,
+      "position": "OL",
+      "name": "Logan Bahn",
+      "phonetic_name": "LOGAN BAHN"
+    },
+    {
+      "number": 61,
+      "position": "OL",
+      "name": "Liam Horan",
+      "phonetic_name": "LIAM HORAN"
+    },
+    {
+      "number": 63,
+      "position": "OL",
+      "name": "Alex Birchmeier",
+      "phonetic_name": "Alex BURTCH-myer"
+    },
+    {
+      "number": 64,
+      "position": "OL",
+      "name": "Eagan Boyer",
+      "phonetic_name": "EAGAN BOYER"
+    },
+    {
+      "number": 65,
+      "position": "OL",
+      "name": "Jim Fitzgerald",
+      "phonetic_name": "JIM FITZGERALD"
+    },
+    {
+      "number": 66,
+      "position": "OL",
+      "name": "Drew Shelton",
+      "phonetic_name": "DREW SHELTON"
+    },
+    {
+      "number": 67,
+      "position": "OL",
+      "name": "Henry Boehme",
+      "phonetic_name": "Henry BAME"
+    },
+    {
+      "number": 68,
+      "position": "OL",
+      "name": "Anthony Donkoh",
+      "phonetic_name": "Anthony DON-coe"
+    },
+    {
+      "number": 70,
+      "position": "OL",
+      "name": "Garrett Sexton",
+      "phonetic_name": "GARRETT SEXTON"
+    },
+    {
+      "number": 71,
+      "position": "OL",
+      "name": "Olaivavega Ioane",
+      "phonetic_name": "O-LIE-vuh-VENG-uh Yo-wahn-ay"
+    },
+    {
+      "number": 72,
+      "position": "OL",
+      "name": "Nolan Rucci",
+      "phonetic_name": "Nolan Roo-chi"
+    },
+    {
+      "number": 73,
+      "position": "OL",
+      "name": "Caleb Brewer",
+      "phonetic_name": "CALEB BREWER"
+    },
+    {
+      "number": 74,
+      "position": "OL",
+      "name": "J'ven Williams",
+      "phonetic_name": "J'VEN WILLIAMS"
+    },
+    {
+      "number": 75,
+      "position": "OL",
+      "name": "Matt Detisch",
+      "phonetic_name": "Matt DETT-ish"
+    },
+    {
+      "number": 76,
+      "position": "OL",
+      "name": "Mason Carlan",
+      "phonetic_name": "MASON CARLAN"
+    },
+    {
+      "number": 77,
+      "position": "OL",
+      "name": "Sal Wormley",
+      "phonetic_name": "SAL WORMLEY"
+    },
+    {
+      "number": 79,
+      "position": "OL",
+      "name": "Addison Penn",
+      "phonetic_name": "ADDISON PENN"
+    },
+    {
+      "number": 80,
+      "position": "WR",
+      "name": "Mehki Flowers",
+      "phonetic_name": "muh-KYE Flowers"
+    },
+    {
+      "number": 81,
+      "position": "WR",
+      "name": "Donte Nastasi",
+      "phonetic_name": "DONTE NASTASI"
+    },
+    {
+      "number": 82,
+      "position": "WR",
+      "name": "Ethan Black",
+      "phonetic_name": "ETHAN BLACK"
+    },
+    {
+      "number": 83,
+      "position": "WR",
+      "name": "Jake Spencer",
+      "phonetic_name": "JAKE SPENCER"
+    },
+    {
+      "number": 84,
+      "position": "WR",
+      "name": "Peter Gonzalez",
+      "phonetic_name": "PETER GONZALEZ"
+    },
+    {
+      "number": 85,
+      "position": "TE",
+      "name": "Luke Reynolds",
+      "phonetic_name": "LUKE REYNOLDS"
+    },
+    {
+      "number": 86,
+      "position": "WR",
+      "name": "Aaron Enterline",
+      "phonetic_name": "AARON ENTERLINE"
+    },
+    {
+      "number": 87,
+      "position": "TE",
+      "name": "Andrew Rappleyea",
+      "phonetic_name": "Andrew RAPPLE-yay"
+    },
+    {
+      "number": 88,
+      "position": "DT",
+      "name": "Sam Siafa",
+      "phonetic_name": "Sam see-AH-fa"
+    },
+    {
+      "number": 89,
+      "position": "TE",
+      "name": "Finn Furmanek",
+      "phonetic_name": "Finn fir-muh-NECK"
+    },
+    {
+      "number": 90,
+      "position": "DT",
+      "name": "Liam Andrews",
+      "phonetic_name": "LIAM ANDREWS"
+    },
+    {
+      "number": 91,
+      "position": "DT",
+      "name": "Dvon J-Thomas",
+      "phonetic_name": "duh-VON Jay-Thomas"
+    },
+    {
+      "number": 91,
+      "position": "K",
+      "name": "Chase Meyer",
+      "phonetic_name": "CHASE MEYER"
+    },
+    {
+      "number": 92,
+      "position": "LS",
+      "name": "Andrew Dufault",
+      "phonetic_name": "Andrew Dew-fault"
+    },
+    {
+      "number": 92,
+      "position": "DE",
+      "name": "Smith Vilbert",
+      "phonetic_name": "SMITH VILBERT"
+    },
+    {
+      "number": 93,
+      "position": "DE",
+      "name": "Bobby Mears",
+      "phonetic_name": "BOBBY MEARS"
+    },
+    {
+      "number": 93,
+      "position": "K",
+      "name": "Sander Sahaydak",
+      "phonetic_name": "Sander suh-HAY-dak"
+    },
+    {
+      "number": 94,
+      "position": "K",
+      "name": "Ryan Barker",
+      "phonetic_name": "RYAN BARKER"
+    },
+    {
+      "number": 94,
+      "position": "DT",
+      "name": "De'Andre Cook",
+      "phonetic_name": "DE'ANDRE COOK"
+    },
+    {
+      "number": 95,
+      "position": "DE",
+      "name": "Jordan Mayer",
+      "phonetic_name": "JORDAN MAYER"
+    },
+    {
+      "number": 95,
+      "position": "P",
+      "name": "Riley Thompson",
+      "phonetic_name": "RILEY THOMPSON"
+    },
+    {
+      "number": 96,
+      "position": "P",
+      "name": "Mitchell Groh",
+      "phonetic_name": "MITCHELL GROH"
+    },
+    {
+      "number": 99,
+      "position": "DT",
+      "name": "Coziah Izzard",
+      "phonetic_name": "Co-ZIGH-uh IZZ-ard"
+    },
+    {
+      "number": 99,
+      "position": "P",
+      "name": "Gabriel Nwosu",
+      "phonetic_name": "Gabriel WO-Sue"
+    }
+  ]
+}
