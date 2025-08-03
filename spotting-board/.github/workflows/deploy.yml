@@ -26,12 +26,15 @@ jobs:
         with:
           node-version: '18'
           cache: 'npm'
+          cache-dependency-path: 'spotting-board/package-lock.json'
           
       - name: Install dependencies
         run: npm ci
+        working-directory: ./spotting-board
         
       - name: Build
         run: npm run build
+        working-directory: ./spotting-board
         
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -39,7 +42,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
+          path: './spotting-board/dist'
 
   deploy:
     environment:
