@@ -46,6 +46,23 @@ function App() {
     "Wisconsin Badgers"
   ];
 
+  // Function to calculate dynamic font size based on content length
+  const getDynamicFontSize = (text, maxHeight = 24, baseFontSize = 8) => {
+    if (!text) return baseFontSize;
+    
+    const length = text.length;
+    const words = text.split(' ').length;
+    
+    // If it's a very long name or multiple words, reduce font size
+    if (length > 15 || words > 2) {
+      return Math.max(6, baseFontSize - 2);
+    } else if (length > 12 || words > 1) {
+      return Math.max(7, baseFontSize - 1);
+    }
+    
+    return baseFontSize;
+  };
+
   // Function to get team logo based on team name
   const getTeamLogo = (teamName) => {
     const logoMap = {
@@ -111,6 +128,7 @@ function App() {
 
   // Render a 10x10 grid
   const grid = [];
+  console.log('Rendering grid, teamName:', teamName);
   for (let row = 0; row < 10; row++) {
     const cells = [];
     for (let col = 0; col < 10; col++) {
@@ -139,7 +157,7 @@ function App() {
                   width: '40px',
                   height: '40px',
                   objectFit: 'contain',
-                  opacity: 0.15,
+                  opacity: 0.08,
                   filter: 'grayscale(100%)',
                   border: 'none',
                   outline: 'none'
@@ -150,17 +168,29 @@ function App() {
         );
       } else {
         cells.push(
-          <td key={num} style={{ background: 'white', width: 120, height: 120, border: '1px solid #333', verticalAlign: 'top', padding: 0 }}>
-            <div style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 16, marginTop: 2, height: 20 }}>{num}</div>
-            <div style={{ display: 'flex', flexDirection: 'column', height: 95 }}>
+          <td key={num} style={{ background: 'white', width: 120, height: 140, border: '1px solid #333', verticalAlign: 'top', padding: 0, position: 'relative' }}>
+            <div style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 16, marginTop: 2, height: 20, position: 'relative', zIndex: 1 }}>{num}</div>
+            <div style={{ display: 'flex', flexDirection: 'column', height: 115, position: 'relative' }}>
               {/* Offense (green, top half only) */}
               <div style={{ height: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '1px 0' }}>
                 {cell.offense.length > 0 && (
-                  <div style={{ background: '#c8f7c5', color: '#222', borderRadius: 2, margin: '1px 2px', padding: '1px 0', textAlign: 'center', fontSize: 8, fontWeight: 500, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', wordWrap: 'break-word', overflow: 'hidden' }}>
+                  <div style={{ background: 'rgba(200, 247, 197, 0.9)', color: '#222', borderRadius: 2, margin: '1px 2px', padding: '2px 0 1px 0', textAlign: 'center', fontSize: 8, fontWeight: 500, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', wordWrap: 'break-word', overflow: 'hidden', position: 'relative', zIndex: 1 }}>
                     {cell.offense.map((p, i) => (
-                      <div key={i} style={{ lineHeight: '1.0', padding: '1px 1px' }}>
-                        <div style={{ fontSize: 9, fontWeight: 'bold', marginBottom: 1 }}>{p.position}</div>
-                        <div style={{ fontSize: 7, wordBreak: 'break-word', lineHeight: '0.9', maxHeight: '20px', overflow: 'hidden' }}>{p.phonetic_name}</div>
+                      <div key={i} style={{ lineHeight: '1.0', padding: cell.offense.length > 1 ? '0px 1px' : '1px 1px' }}>
+                        <div style={{ fontSize: cell.offense.length > 1 ? 8 : 9, fontWeight: 'bold', marginBottom: cell.offense.length > 1 ? 0 : 1 }}>{p.position}</div>
+                        <div style={{ 
+                          fontSize: getDynamicFontSize(p.phonetic_name), 
+                          wordBreak: 'break-word', 
+                          lineHeight: '1.4', 
+                          maxHeight: '24px', 
+                          overflow: 'hidden', 
+                          paddingBottom: '2px', 
+                          paddingTop: '1px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          minHeight: '20px'
+                        }}>{p.phonetic_name}</div>
                       </div>
                     ))}
                   </div>
@@ -169,11 +199,23 @@ function App() {
               {/* Defense (red, bottom half only) */}
               <div style={{ height: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '1px 0' }}>
                 {cell.defense.length > 0 && (
-                  <div style={{ background: '#f7c5c5', color: '#222', borderRadius: 2, margin: '1px 2px', padding: '1px 0', textAlign: 'center', fontSize: 8, fontWeight: 500, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', wordWrap: 'break-word', overflow: 'hidden' }}>
+                  <div style={{ background: 'rgba(247, 197, 197, 0.9)', color: '#222', borderRadius: 2, margin: '1px 2px', padding: '2px 0 1px 0', textAlign: 'center', fontSize: 8, fontWeight: 500, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', wordWrap: 'break-word', overflow: 'hidden', position: 'relative', zIndex: 1 }}>
                     {cell.defense.map((p, i) => (
-                      <div key={i} style={{ lineHeight: '1.0', padding: '1px 1px' }}>
-                        <div style={{ fontSize: 9, fontWeight: 'bold', marginBottom: 1 }}>{p.position}</div>
-                        <div style={{ fontSize: 7, wordBreak: 'break-word', lineHeight: '0.9', maxHeight: '20px', overflow: 'hidden' }}>{p.phonetic_name}</div>
+                      <div key={i} style={{ lineHeight: '1.0', padding: cell.defense.length > 1 ? '0px 1px' : '1px 1px' }}>
+                        <div style={{ fontSize: cell.defense.length > 1 ? 8 : 9, fontWeight: 'bold', marginBottom: cell.defense.length > 1 ? 0 : 1 }}>{p.position}</div>
+                        <div style={{ 
+                          fontSize: getDynamicFontSize(p.phonetic_name), 
+                          wordBreak: 'break-word', 
+                          lineHeight: '1.4', 
+                          maxHeight: '24px', 
+                          overflow: 'hidden', 
+                          paddingBottom: '2px', 
+                          paddingTop: '1px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          minHeight: '20px'
+                        }}>{p.phonetic_name}</div>
                       </div>
                     ))}
                   </div>
@@ -662,4 +704,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
