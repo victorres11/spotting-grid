@@ -51,7 +51,7 @@ A professional football spotting board application designed for Big Ten Conferen
 #### **Manual Position Override (Flip System)**
 You can manually override a player's automatic categorization by adding a `"flip"` property:
 - **Normal**: Player appears on offense/defense based on their position
-- **Flipped**: Add `"flip": "y"` to put the player on the opposite side
+- **Flipped**: Add `"flip": "y"` or `"flip": "true"` to put the player on the opposite side
 
 **Examples:**
 ```json
@@ -69,13 +69,21 @@ You can manually override a player's automatic categorization by adding a `"flip
       "name": "Jane Smith",
       "phonetic_name": "JANE SMITH",
       "flip": "y"
+    },
+    {
+      "number": 3,
+      "position": "WR",
+      "name": "Bob Johnson",
+      "phonetic_name": "BOB JOHNSON",
+      "flip": "true"
     }
   ]
 }
 ```
 In this example:
 - Player #1 (QB) appears on offense (green) - normal behavior
-- Player #2 (CB) appears on offense (green) instead of defense (red) - flipped!
+- Player #2 (CB) appears on offense (green) instead of defense (red) - flipped with `"flip": "y"`
+- Player #3 (WR) appears on defense (red) instead of offense (green) - flipped with `"flip": "true"`
 
 ### 3. **Generate Board**
 - Click "Generate Board" to create your spotting board

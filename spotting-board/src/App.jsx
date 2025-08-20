@@ -169,7 +169,7 @@ function App() {
     if (!boardMap[p.number]) boardMap[p.number] = { offense: [], defense: [] };
     
     // Check if player should be flipped to opposite side
-    const shouldFlip = p.flip === "y" || p.flip === "Y";
+    const shouldFlip = p.flip === "y" || p.flip === "Y" || p.flip === "true" || p.flip === "True" || p.flip === "TRUE";
     
     // Determine if player is naturally offensive or defensive
     const isNaturallyOffensive = ["QB","RB","WR","TE","OL","FB","OT","OG","C"].includes(p.position);
