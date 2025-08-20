@@ -79,7 +79,7 @@ function App() {
       "Michigan Wolverines": "./logos/Michigan.svg",
       "Michigan State Spartans": "./logos/MichiganState.svg",
       "Minnesota Golden Gophers": "./logos/Minnesota.svg",
-      "Missouri State Bears": "/spotting-grid/missouri_state.png",
+      "Missouri State Bears": "/spotting-grid/logos/missouri_state.png",
       "Nebraska Cornhuskers": "./logos/Nebraska_(2025_Logo).svg",
       "Northwestern Wildcats": "./logos/Northwestern_(2025_Logo).svg",
       "Ohio State Buckeyes": "./logos/OhioState.svg",
