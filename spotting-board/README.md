@@ -33,6 +33,7 @@ A professional football spotting board application designed for Big Ten Conferen
 ### 📊 **Spotting Board Features**
 - **10x10 Grid Layout** - Traditional football spotting board format
 - **Position-Based Organization** - Offense (green) and Defense (red) sections
+- **Manual Position Override** - Use `"flip": "y"` to manually place players on opposite side
 - **Special Teams Support** - Kickers, Punters, and Long Snappers properly categorized
 - **Player Information** - Jersey numbers, positions, and phonetic names
 - **Team Logo Integration** - Team logos displayed in headers and empty cells
@@ -46,6 +47,35 @@ A professional football spotting board application designed for Big Ten Conferen
 ### 2. **Input Player Data**
 - Paste your roster JSON data in the provided field
 - Format: `{"players": [{"number": 1, "position": "QB", "name": "John Doe", "phonetic_name": "JOHN DOE"}]}`
+
+#### **Manual Position Override (Flip System)**
+You can manually override a player's automatic categorization by adding a `"flip"` property:
+- **Normal**: Player appears on offense/defense based on their position
+- **Flipped**: Add `"flip": "y"` to put the player on the opposite side
+
+**Examples:**
+```json
+{
+  "players": [
+    {
+      "number": 1,
+      "position": "QB",
+      "name": "John Doe",
+      "phonetic_name": "JOHN DOE"
+    },
+    {
+      "number": 2,
+      "position": "CB",
+      "name": "Jane Smith",
+      "phonetic_name": "JANE SMITH",
+      "flip": "y"
+    }
+  ]
+}
+```
+In this example:
+- Player #1 (QB) appears on offense (green) - normal behavior
+- Player #2 (CB) appears on offense (green) instead of defense (red) - flipped!
 
 ### 3. **Generate Board**
 - Click "Generate Board" to create your spotting board

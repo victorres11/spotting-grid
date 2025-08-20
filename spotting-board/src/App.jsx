@@ -167,10 +167,27 @@ function App() {
   const boardMap = {};
   players.forEach((p) => {
     if (!boardMap[p.number]) boardMap[p.number] = { offense: [], defense: [] };
-    if (["QB","RB","WR","TE","OL","FB","OT","OG","C"].includes(p.position)) {
-      boardMap[p.number].offense.push(p);
+    
+    // Check if player should be flipped to opposite side
+    const shouldFlip = p.flip === "y" || p.flip === "Y";
+    
+    // Determine if player is naturally offensive or defensive
+    const isNaturallyOffensive = ["QB","RB","WR","TE","OL","FB","OT","OG","C"].includes(p.position);
+    
+    // Apply flip logic: if flip is "y", put player on opposite side
+    if (shouldFlip) {
+      if (isNaturallyOffensive) {
+        boardMap[p.number].defense.push(p);
+      } else {
+        boardMap[p.number].offense.push(p);
+      }
     } else {
-      boardMap[p.number].defense.push(p);
+      // Normal categorization based on position
+      if (isNaturallyOffensive) {
+        boardMap[p.number].offense.push(p);
+      } else {
+        boardMap[p.number].defense.push(p);
+      }
     }
   });
 
