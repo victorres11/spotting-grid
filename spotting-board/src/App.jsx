@@ -234,7 +234,7 @@ function App() {
                   width: '40px',
                   height: '40px',
                   objectFit: 'contain',
-                  opacity: 0.08,
+                  opacity: 0.43,
                   filter: 'grayscale(100%)',
                   border: 'none',
                   outline: 'none'
