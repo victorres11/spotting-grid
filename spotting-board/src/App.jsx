@@ -69,6 +69,23 @@ function App() {
     return baseFontSize;
   };
 
+  // Function to split name into first and last name for better readability
+  const splitNameForDisplay = (phoneticName) => {
+    if (!phoneticName) return { firstName: '', lastName: '' };
+    
+    const words = phoneticName.trim().split(' ');
+    if (words.length === 1) {
+      return { firstName: words[0], lastName: '' };
+    } else if (words.length === 2) {
+      return { firstName: words[0], lastName: words[1] };
+    } else {
+      // For names with more than 2 parts, put first word as first name, rest as last name
+      const firstName = words[0];
+      const lastName = words.slice(1).join(' ');
+      return { firstName, lastName };
+    }
+  };
+
   // Function to get team logo based on team name
   const getTeamLogo = (teamName) => {
     const logoMap = {
@@ -225,17 +242,28 @@ function App() {
                           fontSize: getDynamicFontSize(p.phonetic_name), 
                           fontWeight: 'bold',
                           wordBreak: 'break-word', 
-                          lineHeight: '1.2', 
+                          lineHeight: '1.1', 
                           maxHeight: 'none', 
                           overflow: 'visible', 
-                          paddingBottom: '2px', 
+                          paddingBottom: '1px', 
                           paddingTop: '1px',
                           display: 'flex',
+                          flexDirection: 'column',
                           alignItems: 'center',
                           justifyContent: 'center',
                           minHeight: '20px',
                           color: '#000'
-                        }}>{p.phonetic_name}</div>
+                        }}>
+                          {(() => {
+                            const { firstName, lastName } = splitNameForDisplay(p.phonetic_name);
+                            return (
+                              <>
+                                {firstName && <div style={{ fontSize: getDynamicFontSize(firstName, 12, 10) }}>{firstName}</div>}
+                                {lastName && <div style={{ fontSize: getDynamicFontSize(lastName, 12, 10) }}>{lastName}</div>}
+                              </>
+                            );
+                          })()}
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -252,17 +280,28 @@ function App() {
                           fontSize: getDynamicFontSize(p.phonetic_name), 
                           fontWeight: 'bold',
                           wordBreak: 'break-word', 
-                          lineHeight: '1.2', 
+                          lineHeight: '1.1', 
                           maxHeight: 'none', 
                           overflow: 'visible', 
-                          paddingBottom: '2px', 
+                          paddingBottom: '1px', 
                           paddingTop: '1px',
                           display: 'flex',
+                          flexDirection: 'column',
                           alignItems: 'center',
                           justifyContent: 'center',
                           minHeight: '20px',
                           color: '#000'
-                        }}>{p.phonetic_name}</div>
+                        }}>
+                          {(() => {
+                            const { firstName, lastName } = splitNameForDisplay(p.phonetic_name);
+                            return (
+                              <>
+                                {firstName && <div style={{ fontSize: getDynamicFontSize(firstName, 12, 10) }}>{firstName}</div>}
+                                {lastName && <div style={{ fontSize: getDynamicFontSize(lastName, 12, 10) }}>{lastName}</div>}
+                              </>
+                            );
+                          })()}
+                        </div>
                       </div>
                     ))}
                   </div>
