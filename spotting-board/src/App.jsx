@@ -37,27 +37,33 @@ function App() {
     "Michigan Wolverines",
     "Michigan State Spartans",
     "Minnesota Golden Gophers",
+    "Missouri State Bears",
     "Nebraska Cornhuskers",
     "Northwestern Wildcats",
     "Ohio State Buckeyes",
     "Penn State Nittany Lions",
     "Purdue Boilermakers",
     "Rutgers Scarlet Knights",
+    "USC Trojans",
     "Wisconsin Badgers"
   ];
 
   // Function to calculate dynamic font size based on content length
-  const getDynamicFontSize = (text, maxHeight = 24, baseFontSize = 8) => {
+  const getDynamicFontSize = (text, maxHeight = 24, baseFontSize = 12) => {
     if (!text) return baseFontSize;
     
     const length = text.length;
     const words = text.split(' ').length;
     
-    // If it's a very long name or multiple words, reduce font size
-    if (length > 15 || words > 2) {
-      return Math.max(6, baseFontSize - 2);
+    // More aggressive font sizing for better visibility
+    if (length > 20 || words > 3) {
+      return Math.max(8, baseFontSize - 4);
+    } else if (length > 15 || words > 2) {
+      return Math.max(9, baseFontSize - 3);
     } else if (length > 12 || words > 1) {
-      return Math.max(7, baseFontSize - 1);
+      return Math.max(10, baseFontSize - 2);
+    } else if (length > 8) {
+      return Math.max(11, baseFontSize - 1);
     }
     
     return baseFontSize;
@@ -66,22 +72,47 @@ function App() {
   // Function to get team logo based on team name
   const getTeamLogo = (teamName) => {
     const logoMap = {
-      "Illinois Fighting Illini": "/logos/Illinois.svg",
-      "Indiana Hoosiers": "/logos/Indiana_(2025_Logo).svg",
-      "Iowa Hawkeyes": "/logos/Iowa.svg",
-      "Maryland Terrapins": "/logos/Maryland.svg",
-      "Michigan Wolverines": "/logos/Michigan.svg",
-      "Michigan State Spartans": "/logos/MichiganState.svg",
-      "Minnesota Golden Gophers": "/logos/Minnesota.svg",
-      "Nebraska Cornhuskers": "/logos/Nebraska_(2025_Logo).svg",
-      "Northwestern Wildcats": "/logos/Northwestern_(2025_Logo).svg",
-      "Ohio State Buckeyes": "/logos/OhioState.svg",
-      "Penn State Nittany Lions": "/logos/PennState.svg",
-      "Purdue Boilermakers": "/logos/Purdue.svg",
-      "Rutgers Scarlet Knights": "/logos/Rutgers.svg",
-      "Wisconsin Badgers": "/logos/Wisconsin.svg"
+      "Illinois Fighting Illini": "./logos/Illinois.svg",
+      "Indiana Hoosiers": "./logos/Indiana_(2025_Logo).svg",
+      "Iowa Hawkeyes": "./logos/Iowa.svg",
+      "Maryland Terrapins": "./logos/Maryland.svg",
+      "Michigan Wolverines": "./logos/Michigan.svg",
+      "Michigan State Spartans": "./logos/MichiganState.svg",
+      "Minnesota Golden Gophers": "./logos/Minnesota.svg",
+      "Missouri State Bears": "/spotting-grid/missouri_state.png",
+      "Nebraska Cornhuskers": "./logos/Nebraska_(2025_Logo).svg",
+      "Northwestern Wildcats": "./logos/Northwestern_(2025_Logo).svg",
+      "Ohio State Buckeyes": "./logos/OhioState.svg",
+      "Penn State Nittany Lions": "./logos/PennState.svg",
+      "Purdue Boilermakers": "./logos/Purdue.svg",
+      "Rutgers Scarlet Knights": "./logos/Rutgers.svg",
+      "USC Trojans": "./logos/USC_Primary.svg",
+      "Wisconsin Badgers": "./logos/Wisconsin.svg"
     };
     return logoMap[teamName] || null;
+  };
+
+  // Function to get team color based on team name
+  const getTeamColor = (teamName) => {
+    const colorMap = {
+      "Illinois Fighting Illini": "#E84A27", // Illinois Orange
+      "Indiana Hoosiers": "#990000", // Indiana Crimson
+      "Iowa Hawkeyes": "#000000", // Iowa Black
+      "Maryland Terrapins": "#E03A3E", // Maryland Red
+      "Michigan Wolverines": "#00274C", // Michigan Blue
+      "Michigan State Spartans": "#18453B", // Michigan State Green
+      "Minnesota Golden Gophers": "#7A0019", // Minnesota Maroon
+      "Missouri State Bears": "#8B0000", // Missouri State Maroon
+      "Nebraska Cornhuskers": "#E31837", // Nebraska Red
+      "Northwestern Wildcats": "#4E2A84", // Northwestern Purple
+      "Ohio State Buckeyes": "#BB0000", // Ohio State Scarlet
+      "Penn State Nittany Lions": "#041E42", // Penn State Blue
+      "Purdue Boilermakers": "#CEB888", // Purdue Gold
+      "Rutgers Scarlet Knights": "#D21034", // Rutgers Scarlet
+      "USC Trojans": "#FFC72C", // USC Gold
+      "Wisconsin Badgers": "#C5050C" // Wisconsin Red
+    };
+    return colorMap[teamName] || "#e74c3c"; // Default to current red if team not found
   };
 
   const filteredTeams = bigTenTeams.filter(team =>
@@ -124,6 +155,18 @@ function App() {
     } else {
       boardMap[p.number].defense.push(p);
     }
+  });
+
+  // Sort defense arrays to put special teams positions (K, LS, P) at the bottom
+  Object.values(boardMap).forEach(cell => {
+    cell.defense.sort((a, b) => {
+      const aIsSpecialTeams = ["K", "LS", "P"].includes(a.position);
+      const bIsSpecialTeams = ["K", "LS", "P"].includes(b.position);
+      
+      if (aIsSpecialTeams && !bIsSpecialTeams) return 1; // a goes after b
+      if (!aIsSpecialTeams && bIsSpecialTeams) return -1; // a goes before b
+      return 0; // keep original order for same type
+    });
   });
 
   // Render a 10x10 grid
@@ -174,22 +217,24 @@ function App() {
               {/* Offense (green, top half only) */}
               <div style={{ height: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '1px 0' }}>
                 {cell.offense.length > 0 && (
-                  <div style={{ background: 'rgba(200, 247, 197, 0.9)', color: '#222', borderRadius: 2, margin: '1px 2px', padding: '2px 0 1px 0', textAlign: 'center', fontSize: 8, fontWeight: 500, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', wordWrap: 'break-word', overflow: 'hidden', position: 'relative', zIndex: 1 }}>
+                  <div style={{ background: 'rgba(200, 247, 197, 0.95)', color: '#222', borderRadius: 2, margin: '1px 2px', padding: '2px 0 1px 0', textAlign: 'center', fontSize: 8, fontWeight: 500, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', wordWrap: 'break-word', overflow: 'visible', position: 'relative', zIndex: 1 }}>
                     {cell.offense.map((p, i) => (
                       <div key={i} style={{ lineHeight: '1.0', padding: cell.offense.length > 1 ? '0px 1px' : '1px 1px' }}>
-                        <div style={{ fontSize: cell.offense.length > 1 ? 8 : 9, fontWeight: 'bold', marginBottom: cell.offense.length > 1 ? 0 : 1 }}>{p.position}</div>
+                        <div style={{ fontSize: cell.offense.length > 1 ? 9 : 10, fontWeight: 'bold', marginBottom: cell.offense.length > 1 ? 0 : 1, color: '#000' }}>{p.position}</div>
                         <div style={{ 
                           fontSize: getDynamicFontSize(p.phonetic_name), 
+                          fontWeight: 'bold',
                           wordBreak: 'break-word', 
-                          lineHeight: '1.4', 
-                          maxHeight: '24px', 
-                          overflow: 'hidden', 
+                          lineHeight: '1.2', 
+                          maxHeight: 'none', 
+                          overflow: 'visible', 
                           paddingBottom: '2px', 
                           paddingTop: '1px',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          minHeight: '20px'
+                          minHeight: '20px',
+                          color: '#000'
                         }}>{p.phonetic_name}</div>
                       </div>
                     ))}
@@ -199,22 +244,24 @@ function App() {
               {/* Defense (red, bottom half only) */}
               <div style={{ height: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '1px 0' }}>
                 {cell.defense.length > 0 && (
-                  <div style={{ background: 'rgba(247, 197, 197, 0.9)', color: '#222', borderRadius: 2, margin: '1px 2px', padding: '2px 0 1px 0', textAlign: 'center', fontSize: 8, fontWeight: 500, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', wordWrap: 'break-word', overflow: 'hidden', position: 'relative', zIndex: 1 }}>
+                  <div style={{ background: 'rgba(247, 197, 197, 0.95)', color: '#222', borderRadius: 2, margin: '1px 2px', padding: '2px 0 1px 0', textAlign: 'center', fontSize: 8, fontWeight: '500', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', wordWrap: 'break-word', overflow: 'visible', position: 'relative', zIndex: 1 }}>
                     {cell.defense.map((p, i) => (
                       <div key={i} style={{ lineHeight: '1.0', padding: cell.defense.length > 1 ? '0px 1px' : '1px 1px' }}>
-                        <div style={{ fontSize: cell.defense.length > 1 ? 8 : 9, fontWeight: 'bold', marginBottom: cell.defense.length > 1 ? 0 : 1 }}>{p.position}</div>
+                        <div style={{ fontSize: cell.defense.length > 1 ? 9 : 10, fontWeight: 'bold', marginBottom: cell.defense.length > 1 ? 0 : 1, color: '#000' }}>{p.position}</div>
                         <div style={{ 
                           fontSize: getDynamicFontSize(p.phonetic_name), 
+                          fontWeight: 'bold',
                           wordBreak: 'break-word', 
-                          lineHeight: '1.4', 
-                          maxHeight: '24px', 
-                          overflow: 'hidden', 
+                          lineHeight: '1.2', 
+                          maxHeight: 'none', 
+                          overflow: 'visible', 
                           paddingBottom: '2px', 
                           paddingTop: '1px',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          minHeight: '20px'
+                          minHeight: '20px',
+                          color: '#000'
                         }}>{p.phonetic_name}</div>
                       </div>
                     ))}
@@ -608,7 +655,7 @@ function App() {
                 color: '#2c3e50',
                 fontSize: '2rem',
                 fontWeight: 'bold',
-                borderBottom: '3px solid #e74c3c',
+                borderBottom: `3px solid ${getTeamColor(teamName)}`,
                 paddingBottom: '10px',
                 display: 'flex',
                 alignItems: 'center',
@@ -662,7 +709,7 @@ function App() {
                 color: '#2c3e50',
                 fontSize: '2rem',
                 fontWeight: 'bold',
-                borderTop: '3px solid #e74c3c',
+                borderTop: `3px solid ${getTeamColor(teamName)}`,
                 paddingTop: '10px',
                 display: 'flex',
                 alignItems: 'center',
