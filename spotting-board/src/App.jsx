@@ -289,7 +289,34 @@ function App() {
               {/* Defense (red, bottom half only) */}
               <div style={{ height: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '1px 0' }}>
                 {cell.defense.length > 0 && (
-                  <div style={{ background: 'rgba(247, 197, 197, 0.95)', color: '#222', borderRadius: 2, margin: '1px 2px', padding: '2px 0 1px 0', textAlign: 'center', fontSize: 8, fontWeight: '500', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', wordWrap: 'break-word', overflow: 'visible', position: 'relative', zIndex: 1 }}>
+                  <div style={{ 
+                    background: (() => {
+                      // Check if this cell contains only special teams players
+                      const allSpecialTeams = cell.defense.every(p => ["K", "LS", "P"].includes(p.position));
+                      const onlySpecialTeams = allSpecialTeams && cell.defense.length > 0;
+                      
+                      if (onlySpecialTeams) {
+                        return 'rgba(255, 255, 0, 0.95)'; // Yellow for special teams only
+                      } else {
+                        return 'rgba(247, 197, 197, 0.95)'; // Red for regular defense
+                      }
+                    })(),
+                    color: '#222', 
+                    borderRadius: 2, 
+                    margin: '1px 2px', 
+                    padding: '2px 0 1px 0', 
+                    textAlign: 'center', 
+                    fontSize: 8, 
+                    fontWeight: '500', 
+                    height: '100%', 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    justifyContent: 'center', 
+                    wordWrap: 'break-word', 
+                    overflow: 'visible', 
+                    position: 'relative', 
+                    zIndex: 1 
+                  }}>
                     {cell.defense.map((p, i) => (
                       <div key={i} style={{ lineHeight: '1.0', padding: cell.defense.length > 1 ? '0px 1px' : '1px 1px' }}>
                         <div style={{ fontSize: cell.defense.length > 1 ? 9 : 10, fontWeight: 'bold', marginBottom: cell.defense.length > 1 ? 0 : 1, color: '#000' }}>{p.position}</div>
@@ -404,6 +431,11 @@ function App() {
             }
             .board-table div[style*="background: #f7c5c5"] {
               background: #f7c5c5 !important;
+              -webkit-print-color-adjust: exact !important;
+              color-adjust: exact !important;
+            }
+            .board-table div[style*="background: rgba(255, 255, 0"] {
+              background: #ffff00 !important;
               -webkit-print-color-adjust: exact !important;
               color-adjust: exact !important;
             }
