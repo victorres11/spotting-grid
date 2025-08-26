@@ -253,12 +253,11 @@ function App() {
                 {cell.offense.length > 0 && (
                   <div style={{ 
                     background: (() => {
-                      // Check if this cell contains only special teams players (considering both offense and defense)
-                      const allPlayers = [...cell.offense, ...cell.defense];
-                      const allSpecialTeams = allPlayers.every(p => ["K", "LS", "P"].includes(p.position));
-                      const onlySpecialTeams = allSpecialTeams && allPlayers.length > 0;
+                      // Check if the offense array contains only special teams players
+                      const allOffenseSpecialTeams = cell.offense.every(p => ["K", "LS", "P"].includes(p.position));
+                      const onlyOffenseSpecialTeams = allOffenseSpecialTeams && cell.offense.length > 0;
                       
-                      if (onlySpecialTeams) {
+                      if (onlyOffenseSpecialTeams) {
                         return 'rgba(255, 255, 0, 0.95)'; // Yellow for special teams only
                       } else {
                         return 'rgba(200, 247, 197, 0.95)'; // Green for regular offense
@@ -319,16 +318,11 @@ function App() {
                 {cell.defense.length > 0 && (
                   <div style={{ 
                     background: (() => {
-                      // Check if this cell contains only special teams players (considering both offense and defense)
+                      // Check if the defense array contains only special teams players
                       const allDefenseSpecialTeams = cell.defense.every(p => ["K", "LS", "P"].includes(p.position));
-                      const allOffenseSpecialTeams = cell.offense.every(p => ["K", "LS", "P"].includes(p.position));
+                      const onlyDefenseSpecialTeams = allDefenseSpecialTeams && cell.defense.length > 0;
                       
-                      // Check if the entire cell (both offense and defense) contains only special teams
-                      const allPlayers = [...cell.offense, ...cell.defense];
-                      const allSpecialTeams = allPlayers.every(p => ["K", "LS", "P"].includes(p.position));
-                      const onlySpecialTeams = allSpecialTeams && allPlayers.length > 0;
-                      
-                      if (onlySpecialTeams) {
+                      if (onlyDefenseSpecialTeams) {
                         return 'rgba(255, 255, 0, 0.95)'; // Yellow for special teams only
                       } else {
                         return 'rgba(247, 197, 197, 0.95)'; // Red for regular defense
