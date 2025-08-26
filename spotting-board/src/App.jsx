@@ -251,7 +251,35 @@ function App() {
               {/* Offense (green, top half only) */}
               <div style={{ height: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '1px 0' }}>
                 {cell.offense.length > 0 && (
-                  <div style={{ background: 'rgba(200, 247, 197, 0.95)', color: '#222', borderRadius: 2, margin: '1px 2px', padding: '2px 0 1px 0', textAlign: 'center', fontSize: 8, fontWeight: 500, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', wordWrap: 'break-word', overflow: 'visible', position: 'relative', zIndex: 1 }}>
+                  <div style={{ 
+                    background: (() => {
+                      // Check if this cell contains only special teams players (considering both offense and defense)
+                      const allPlayers = [...cell.offense, ...cell.defense];
+                      const allSpecialTeams = allPlayers.every(p => ["K", "LS", "P"].includes(p.position));
+                      const onlySpecialTeams = allSpecialTeams && allPlayers.length > 0;
+                      
+                      if (onlySpecialTeams) {
+                        return 'rgba(255, 255, 0, 0.95)'; // Yellow for special teams only
+                      } else {
+                        return 'rgba(200, 247, 197, 0.95)'; // Green for regular offense
+                      }
+                    })(),
+                    color: '#222', 
+                    borderRadius: 2, 
+                    margin: '1px 2px', 
+                    padding: '2px 0 1px 0', 
+                    textAlign: 'center', 
+                    fontSize: 8, 
+                    fontWeight: 500, 
+                    height: '100%', 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    justifyContent: 'center', 
+                    wordWrap: 'break-word', 
+                    overflow: 'visible', 
+                    position: 'relative', 
+                    zIndex: 1 
+                  }}>
                     {cell.offense.map((p, i) => (
                       <div key={i} style={{ lineHeight: '1.0', padding: cell.offense.length > 1 ? '0px 1px' : '1px 1px' }}>
                         <div style={{ fontSize: cell.offense.length > 1 ? 9 : 10, fontWeight: 'bold', marginBottom: cell.offense.length > 1 ? 0 : 1, color: '#000' }}>{p.position}</div>
@@ -291,9 +319,14 @@ function App() {
                 {cell.defense.length > 0 && (
                   <div style={{ 
                     background: (() => {
-                      // Check if this cell contains only special teams players
-                      const allSpecialTeams = cell.defense.every(p => ["K", "LS", "P"].includes(p.position));
-                      const onlySpecialTeams = allSpecialTeams && cell.defense.length > 0;
+                      // Check if this cell contains only special teams players (considering both offense and defense)
+                      const allDefenseSpecialTeams = cell.defense.every(p => ["K", "LS", "P"].includes(p.position));
+                      const allOffenseSpecialTeams = cell.offense.every(p => ["K", "LS", "P"].includes(p.position));
+                      
+                      // Check if the entire cell (both offense and defense) contains only special teams
+                      const allPlayers = [...cell.offense, ...cell.defense];
+                      const allSpecialTeams = allPlayers.every(p => ["K", "LS", "P"].includes(p.position));
+                      const onlySpecialTeams = allSpecialTeams && allPlayers.length > 0;
                       
                       if (onlySpecialTeams) {
                         return 'rgba(255, 255, 0, 0.95)'; // Yellow for special teams only
