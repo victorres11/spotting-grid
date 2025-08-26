@@ -258,7 +258,7 @@ function App() {
                       const onlyOffenseSpecialTeams = allOffenseSpecialTeams && cell.offense.length > 0;
                       
                       if (onlyOffenseSpecialTeams) {
-                        return 'rgba(255, 255, 0, 0.95)'; // Yellow for special teams only
+                        return 'rgba(255, 255, 200, 0.95)'; // Dull yellow for special teams only
                       } else {
                         return 'rgba(200, 247, 197, 0.95)'; // Green for regular offense
                       }
@@ -323,7 +323,7 @@ function App() {
                       const onlyDefenseSpecialTeams = allDefenseSpecialTeams && cell.defense.length > 0;
                       
                       if (onlyDefenseSpecialTeams) {
-                        return 'rgba(255, 255, 0, 0.95)'; // Yellow for special teams only
+                        return 'rgba(255, 255, 200, 0.95)'; // Dull yellow for special teams only
                       } else {
                         return 'rgba(247, 197, 197, 0.95)'; // Red for regular defense
                       }
@@ -461,8 +461,8 @@ function App() {
               -webkit-print-color-adjust: exact !important;
               color-adjust: exact !important;
             }
-            .board-table div[style*="background: rgba(255, 255, 0"] {
-              background: #ffff00 !important;
+            .board-table div[style*="background: rgba(255, 255, 200"] {
+              background: #ffffc8 !important;
               -webkit-print-color-adjust: exact !important;
               color-adjust: exact !important;
             }
