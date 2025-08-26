@@ -191,11 +191,11 @@ function App() {
     }
   });
 
-  // Sort defense arrays to put special teams positions (K, LS, P) at the bottom
+  // Sort defense arrays to put special teams positions (K, LS, P, SNP, P/K) at the bottom
   Object.values(boardMap).forEach(cell => {
     cell.defense.sort((a, b) => {
-      const aIsSpecialTeams = ["K", "LS", "P"].includes(a.position);
-      const bIsSpecialTeams = ["K", "LS", "P"].includes(b.position);
+      const aIsSpecialTeams = ["K", "LS", "P", "SNP", "P/K"].includes(a.position);
+      const bIsSpecialTeams = ["K", "LS", "P", "SNP", "P/K"].includes(b.position);
       
       if (aIsSpecialTeams && !bIsSpecialTeams) return 1; // a goes after b
       if (!aIsSpecialTeams && bIsSpecialTeams) return -1; // a goes before b
@@ -254,7 +254,7 @@ function App() {
                   <div style={{ 
                     background: (() => {
                       // Check if the offense array contains only special teams players
-                      const allOffenseSpecialTeams = cell.offense.every(p => ["K", "LS", "P"].includes(p.position));
+                      const allOffenseSpecialTeams = cell.offense.every(p => ["K", "LS", "P", "SNP", "P/K"].includes(p.position));
                       const onlyOffenseSpecialTeams = allOffenseSpecialTeams && cell.offense.length > 0;
                       
                       if (onlyOffenseSpecialTeams) {
@@ -319,7 +319,7 @@ function App() {
                   <div style={{ 
                     background: (() => {
                       // Check if the defense array contains only special teams players
-                      const allDefenseSpecialTeams = cell.defense.every(p => ["K", "LS", "P"].includes(p.position));
+                      const allDefenseSpecialTeams = cell.defense.every(p => ["K", "LS", "P", "SNP", "P/K"].includes(p.position));
                       const onlyDefenseSpecialTeams = allDefenseSpecialTeams && cell.defense.length > 0;
                       
                       if (onlyDefenseSpecialTeams) {
