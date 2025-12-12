@@ -929,7 +929,7 @@ function App() {
           <div className="header-content" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <div className="logo-container">
               <img 
-                src="/big10spottergridlogo.png" 
+                src={`${import.meta.env.BASE_URL}big10spottergridlogo.png`}
                 alt="Big Ten Spotter Grid Logo" 
                 className="b1g-logo"
                 style={{
@@ -964,8 +964,9 @@ function App() {
                   display: 'block', 
                   marginBottom: '8px', 
                   fontWeight: 'bold', 
-                  color: '#ecf0f1',
-                  fontSize: '1.1rem'
+                  color: '#ffffff',
+                  fontSize: '1.1rem',
+                  textShadow: '2px 2px 4px rgba(0,0,0,0.8)'
                 }}>
                   Team Name:
                 </label>
@@ -1072,11 +1073,12 @@ function App() {
                     background: 'rgba(39, 174, 96, 0.2)',
                     borderRadius: '4px',
                     border: '1px solid rgba(39, 174, 96, 0.4)',
-                    color: '#ecf0f1',
+                    color: '#ffffff',
                     fontSize: '0.9rem',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '8px'
+                    gap: '8px',
+                    textShadow: '1px 1px 2px rgba(0,0,0,0.8)'
                   }}>
                     {getTeamLogo(teamName) && (
                       <img 
@@ -1098,8 +1100,9 @@ function App() {
                   display: 'block', 
                   marginBottom: '8px', 
                   fontWeight: 'bold', 
-                  color: '#ecf0f1',
-                  fontSize: '1.1rem'
+                  color: '#ffffff',
+                  fontSize: '1.1rem',
+                  textShadow: '2px 2px 4px rgba(0,0,0,0.8)'
                 }}>
                   Players JSON:
                 </label>
@@ -1308,11 +1311,7 @@ function App() {
           padding: '20px',
           textAlign: 'center',
           color: '#ecf0f1',
-          fontSize: '0.85rem',
-          background: 'rgba(26, 37, 47, 0.7)',
-          borderRadius: '8px',
-          border: '1px solid rgba(255,255,255,0.2)',
-          backdropFilter: 'blur(10px)'
+          fontSize: '0.85rem'
         }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center' }}>
             <div>
