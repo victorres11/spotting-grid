@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import './App.css'
+import fiuDemoRoster from './fiu_demo_roster.json'
 
 function App() {
   const [teamName, setTeamName] = useState('');
@@ -206,6 +207,26 @@ function App() {
       setPlayers(data.players);
     } catch (err) {
       setError('Invalid JSON: ' + err.message);
+      setPlayers([]);
+    }
+  };
+
+  const handleDemo = () => {
+    setError('');
+    // Randomly select a team from the list
+    const randomTeam = bigTenTeams[Math.floor(Math.random() * bigTenTeams.length)];
+    setTeamName(randomTeam);
+    setTeamSearchTerm(randomTeam);
+    
+    // Set the JSON input to the FIU demo roster
+    setJsonInput(JSON.stringify(fiuDemoRoster, null, 2));
+    
+    // Parse and set the players directly
+    try {
+      if (!Array.isArray(fiuDemoRoster.players)) throw new Error('Missing players array');
+      setPlayers(fiuDemoRoster.players);
+    } catch (err) {
+      setError('Error loading demo roster: ' + err.message);
       setPlayers([]);
     }
   };
@@ -1127,29 +1148,61 @@ function App() {
                   }}
                 />
               </div>
-              <button 
-                type="submit" 
-                className="generate-board-button"
-                disabled={!teamName}
-                style={{
-                  background: teamName ? 'linear-gradient(135deg, #e74c3c 0%, #c0392b 100%)' : 'rgba(127, 140, 141, 0.5)',
-                  color: 'white',
-                  border: 'none',
-                  padding: '12px 24px',
-                  borderRadius: '6px',
-                  fontSize: '1rem',
-                  fontWeight: 'bold',
-                  cursor: teamName ? 'pointer' : 'not-allowed',
-                  boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
-                  transition: 'all 0.2s ease',
-                  display: 'block',
-                  margin: '0 auto'
-                }}
-                onMouseOver={(e) => teamName && (e.target.style.transform = 'translateY(-2px)')}
-                onMouseOut={(e) => e.target.style.transform = 'translateY(0)'}
-              >
-                Generate Board
-              </button>
+              <div style={{
+                display: 'flex',
+                gap: '12px',
+                justifyContent: 'center',
+                flexWrap: 'wrap'
+              }}>
+                <button 
+                  type="submit" 
+                  className="generate-board-button"
+                  disabled={!teamName}
+                  style={{
+                    background: teamName ? 'linear-gradient(135deg, #e74c3c 0%, #c0392b 100%)' : 'rgba(127, 140, 141, 0.5)',
+                    color: 'white',
+                    border: 'none',
+                    padding: '12px 24px',
+                    borderRadius: '6px',
+                    fontSize: '1rem',
+                    fontWeight: 'bold',
+                    cursor: teamName ? 'pointer' : 'not-allowed',
+                    boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
+                    transition: 'all 0.2s ease',
+                    flex: '1',
+                    minWidth: '150px',
+                    maxWidth: '250px'
+                  }}
+                  onMouseOver={(e) => teamName && (e.target.style.transform = 'translateY(-2px)')}
+                  onMouseOut={(e) => e.target.style.transform = 'translateY(0)'}
+                >
+                  Generate Board
+                </button>
+                <button 
+                  type="button"
+                  className="demo-button"
+                  onClick={handleDemo}
+                  style={{
+                    background: 'linear-gradient(135deg, #3498db 0%, #2980b9 100%)',
+                    color: 'white',
+                    border: 'none',
+                    padding: '12px 24px',
+                    borderRadius: '6px',
+                    fontSize: '1rem',
+                    fontWeight: 'bold',
+                    cursor: 'pointer',
+                    boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
+                    transition: 'all 0.2s ease',
+                    flex: '1',
+                    minWidth: '150px',
+                    maxWidth: '250px'
+                  }}
+                  onMouseOver={(e) => e.target.style.transform = 'translateY(-2px)'}
+                  onMouseOut={(e) => e.target.style.transform = 'translateY(0)'}
+                >
+                  Generate Example/Demo
+                </button>
+              </div>
             </form>
             {error && (
               <div className="error-message" style={{ 

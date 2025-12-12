@@ -1,0 +1,888 @@
+{
+  "players": [
+    {
+      "number": "0",
+      "position": "LB",
+      "name": "Johnny Chaney Jr.",
+      "phonetic_name": "Johnny Chaney Jr.",
+      "special_teams": [
+        "PR",
+        "PC",
+        "FGB"
+      ]
+    },
+    {
+      "number": "0",
+      "position": "TE",
+      "name": "Dallas Payne",
+      "phonetic_name": "Dallas Payne",
+      "special_teams": [
+        "FG"
+      ]
+    },
+    {
+      "number": "1",
+      "position": "QB",
+      "name": "Keyone Jenkins",
+      "phonetic_name": "Keyone Jenkins",
+      "special_teams": []
+    },
+    {
+      "number": "1",
+      "position": "DB",
+      "name": "Ashton Levells",
+      "phonetic_name": "Ashton Levells",
+      "special_teams": [
+        "KC",
+        "PR",
+        "PC",
+        "FGB"
+      ]
+    },
+    {
+      "number": "2",
+      "position": "DB",
+      "name": "Brian Blades II",
+      "phonetic_name": "Brian Blades II",
+      "special_teams": [
+        "PR",
+        "PC",
+        "FGB"
+      ]
+    },
+    {
+      "number": "2",
+      "position": "WR",
+      "name": "Tar'varish Dawson",
+      "phonetic_name": "Tar'varish Dawson",
+      "special_teams": [
+        "KC"
+      ]
+    },
+    {
+      "number": "3",
+      "position": "DB",
+      "name": "Demetrius Hill",
+      "phonetic_name": "Demetrius Hill",
+      "special_teams": [
+        "KC",
+        "FGB"
+      ]
+    },
+    {
+      "number": "3",
+      "position": "WR",
+      "name": "C'Quan Jnopierre",
+      "phonetic_name": "C'Quan Jnopierre",
+      "special_teams": [
+        "KR",
+        "PR"
+      ]
+    },
+    {
+      "number": "4",
+      "position": "DB",
+      "name": "Victor Evans III",
+      "phonetic_name": "Victor Evans III",
+      "special_teams": [
+        "KC",
+        "PR",
+        "FGB"
+      ]
+    },
+    {
+      "number": "4",
+      "position": "WR",
+      "name": "Alex Perry",
+      "phonetic_name": "Alex Perry",
+      "special_teams": []
+    },
+    {
+      "number": "5",
+      "position": "RB",
+      "name": "Kejon Owens",
+      "phonetic_name": "Kejon Owens",
+      "special_teams": []
+    },
+    {
+      "number": "5",
+      "position": "DL",
+      "name": "Steven Shannon",
+      "phonetic_name": "Steven Shannon",
+      "special_teams": []
+    },
+    {
+      "number": "6",
+      "position": "RB",
+      "name": "Anthony Carrie",
+      "phonetic_name": "Anthony Carrie",
+      "special_teams": [
+        "KR",
+        "PR"
+      ]
+    },
+    {
+      "number": "6",
+      "position": "P",
+      "name": "Trey Wilhoit",
+      "phonetic_name": "Trey Wilhoit",
+      "special_teams": [
+        "PC",
+        "FG"
+      ]
+    },
+    {
+      "number": "7",
+      "position": "DB",
+      "name": "Jai-Ayviauynn Celestine",
+      "phonetic_name": "JAY-VEE-AHN SELL-'S\"-TEEN",
+      "special_teams": [
+        "KR",
+        "FGB"
+      ]
+    },
+    {
+      "number": "7",
+      "position": "WR",
+      "name": "Kyle McNeal",
+      "phonetic_name": "Kyle McNeal",
+      "special_teams": []
+    },
+    {
+      "number": "8",
+      "position": "WR",
+      "name": "Juju Lewis",
+      "phonetic_name": "Juju Lewis",
+      "special_teams": []
+    },
+    {
+      "number": "9",
+      "position": "QB",
+      "name": "Christian Langford",
+      "phonetic_name": "Christian Langford",
+      "special_teams": []
+    },
+    {
+      "number": "9",
+      "position": "DB",
+      "name": "Antonio Patterson",
+      "phonetic_name": "Antonio Patterson",
+      "special_teams": [
+        "KC"
+      ]
+    },
+    {
+      "number": "10",
+      "position": "QB",
+      "name": "Clayton Dees",
+      "phonetic_name": "Clayton Dees",
+      "special_teams": []
+    },
+    {
+      "number": "10",
+      "position": "DB",
+      "name": "Ormond Wallace",
+      "phonetic_name": "Ormond Wallace",
+      "special_teams": []
+    },
+    {
+      "number": "11",
+      "position": "LB",
+      "name": "Percy Courtney Jr.",
+      "phonetic_name": "Percy Courtney Jr.",
+      "special_teams": [
+        "KC",
+        "PC",
+        "FGB"
+      ]
+    },
+    {
+      "number": "11",
+      "position": "WR",
+      "name": "Eric Nelson",
+      "phonetic_name": "Eric Nelson",
+      "special_teams": []
+    },
+    {
+      "number": "12",
+      "position": "DB",
+      "name": "Websley Etienne",
+      "phonetic_name": "Websley Etienne",
+      "special_teams": [
+        "KR",
+        "KC",
+        "PR",
+        "FGB"
+      ]
+    },
+    {
+      "number": "12",
+      "position": "WR",
+      "name": "Amari Isaac",
+      "phonetic_name": "Amari Isaac",
+      "special_teams": []
+    },
+    {
+      "number": "13",
+      "position": "DL",
+      "name": "Dante Anderson",
+      "phonetic_name": "Dante Anderson",
+      "special_teams": []
+    },
+    {
+      "number": "13",
+      "position": "WR",
+      "name": "Tyson Carter",
+      "phonetic_name": "Tyson Carter",
+      "special_teams": []
+    },
+    {
+      "number": "14",
+      "position": "WR",
+      "name": "Kenny Williams",
+      "phonetic_name": "Kenny Williams",
+      "special_teams": []
+    },
+    {
+      "number": "15",
+      "position": "DB",
+      "name": "Tyderick Brown",
+      "phonetic_name": "TY-drick Brown",
+      "special_teams": [
+        "KC"
+      ]
+    },
+    {
+      "number": "15",
+      "position": "QB/WR",
+      "name": "Jake Helfrich",
+      "phonetic_name": "Jake Helfrich",
+      "special_teams": []
+    },
+    {
+      "number": "16",
+      "position": "K",
+      "name": "Noah Grant",
+      "phonetic_name": "Noah Grant",
+      "special_teams": [
+        "KC",
+        "FG"
+      ]
+    },
+    {
+      "number": "16",
+      "position": "QB",
+      "name": "Joe Pesansky",
+      "phonetic_name": "Joe Pesansky",
+      "special_teams": []
+    },
+    {
+      "number": "17",
+      "position": "QB",
+      "name": "Zachary Waters",
+      "phonetic_name": "Zachary Waters",
+      "special_teams": []
+    },
+    {
+      "number": "18",
+      "position": "LB",
+      "name": "Dwight Nunoo",
+      "phonetic_name": "DWIGHT NEW-NEW",
+      "special_teams": [
+        "KC",
+        "PR",
+        "FGB"
+      ]
+    },
+    {
+      "number": "18",
+      "position": "WR",
+      "name": "Jojo Stone",
+      "phonetic_name": "Jojo Stone",
+      "special_teams": []
+    },
+    {
+      "number": "19",
+      "position": "DL",
+      "name": "Olasunkonmi Agunloye",
+      "phonetic_name": "OH-LAH-SOO-CONE-ME AGG-UN-LOW-YAY",
+      "special_teams": [
+        "FGB"
+      ]
+    },
+    {
+      "number": "19",
+      "position": "WR",
+      "name": "Ross Fournet",
+      "phonetic_name": "Ross Fournet",
+      "special_teams": [
+        "KR",
+        "KC",
+        "PR"
+      ]
+    },
+    {
+      "number": "20",
+      "position": "RB",
+      "name": "Devonte Lyons",
+      "phonetic_name": "Devonte Lyons",
+      "special_teams": [
+        "KR"
+      ]
+    },
+    {
+      "number": "21",
+      "position": "WR",
+      "name": "Semaj Demps",
+      "phonetic_name": "Semaj Demps",
+      "special_teams": []
+    },
+    {
+      "number": "22",
+      "position": "RB",
+      "name": "Sterling Joseph",
+      "phonetic_name": "Sterling Joseph",
+      "special_teams": []
+    },
+    {
+      "number": "22",
+      "position": "DB",
+      "name": "Shamir Sterlin",
+      "phonetic_name": "Shamir Sterlin",
+      "special_teams": [
+        "KC",
+        "PR",
+        "FGB"
+      ]
+    },
+    {
+      "number": "23",
+      "position": "DB",
+      "name": "Jessiah McGrew",
+      "phonetic_name": "Jessiah McGrew",
+      "special_teams": [
+        "FGB"
+      ]
+    },
+    {
+      "number": "24",
+      "position": "RB",
+      "name": "Jose Corbo",
+      "phonetic_name": "Jose Corbo",
+      "special_teams": [
+        "KR",
+        "KC",
+        "PR"
+      ]
+    },
+    {
+      "number": "24",
+      "position": "DL",
+      "name": "King Massey",
+      "phonetic_name": "King Massey",
+      "special_teams": []
+    },
+    {
+      "number": "25",
+      "position": "DL",
+      "name": "Kenton Simmons",
+      "phonetic_name": "Kenton Simmons",
+      "special_teams": [
+        "PR",
+        "FGB"
+      ]
+    },
+    {
+      "number": "26",
+      "position": "DB",
+      "name": "Myles Cunningham",
+      "phonetic_name": "Myles Cunningham",
+      "special_teams": []
+    },
+    {
+      "number": "27",
+      "position": "DB",
+      "name": "Mister Clark",
+      "phonetic_name": "Mister Clark",
+      "special_teams": [
+        "PR",
+        "PC",
+        "FGB"
+      ]
+    },
+    {
+      "number": "29",
+      "position": "DB",
+      "name": "Preston Thompson",
+      "phonetic_name": "Preston Thompson",
+      "special_teams": [
+        "PC"
+      ]
+    },
+    {
+      "number": "30",
+      "position": "RB",
+      "name": "Jordan Clemons",
+      "phonetic_name": "Jordan Clemons",
+      "special_teams": []
+    },
+    {
+      "number": "30",
+      "position": "DB",
+      "name": "Sadonnie Gay",
+      "phonetic_name": "Sadonnie Gay",
+      "special_teams": [
+        "KC"
+      ]
+    },
+    {
+      "number": "32",
+      "position": "DB",
+      "name": "Bobby Salla Jr.",
+      "phonetic_name": "Bobby Salla Jr.",
+      "special_teams": [
+        "KR",
+        "KC",
+        "PR",
+        "PC",
+        "FGB"
+      ]
+    },
+    {
+      "number": "33",
+      "position": "DL",
+      "name": "Toddrick Brewton",
+      "phonetic_name": "Toddrick Brewton",
+      "special_teams": []
+    },
+    {
+      "number": "34",
+      "position": "LB",
+      "name": "Cam Davis",
+      "phonetic_name": "Cam Davis",
+      "special_teams": [
+        "KC"
+      ]
+    },
+    {
+      "number": "35",
+      "position": "LB",
+      "name": "Josiah Taylor",
+      "phonetic_name": "Josiah Taylor",
+      "special_teams": [
+        "KC",
+        "PR",
+        "FGB"
+      ]
+    },
+    {
+      "number": "36",
+      "position": "RB",
+      "name": "Nate Henry",
+      "phonetic_name": "Nate Henry",
+      "special_teams": [
+        "PR"
+      ]
+    },
+    {
+      "number": "37",
+      "position": "DB",
+      "name": "Kelvin Reyes",
+      "phonetic_name": "Kelvin Reyes",
+      "special_teams": []
+    },
+    {
+      "number": "40",
+      "position": "LB",
+      "name": "Orlando Syph-Timmons",
+      "phonetic_name": "ORLANDO SIGHF-TIMMONS",
+      "special_teams": [
+        "KC"
+      ]
+    },
+    {
+      "number": "41",
+      "position": "P",
+      "name": "Stone Springman",
+      "phonetic_name": "Stone Springman",
+      "special_teams": []
+    },
+    {
+      "number": "42",
+      "position": "LB",
+      "name": "Kani Smith",
+      "phonetic_name": "KUH-nye SMITH",
+      "special_teams": []
+    },
+    {
+      "number": "43",
+      "position": "DL",
+      "name": "Robert Williams",
+      "phonetic_name": "Robert Williams",
+      "special_teams": []
+    },
+    {
+      "number": "44",
+      "position": "DL",
+      "name": "Keegan Davis",
+      "phonetic_name": "Keegan Davis",
+      "special_teams": [
+        "PR",
+        "PC",
+        "FGB"
+      ]
+    },
+    {
+      "number": "45",
+      "position": "DL",
+      "name": "Lamont Green Jr.",
+      "phonetic_name": "Lamont Green Jr.",
+      "special_teams": []
+    },
+    {
+      "number": "47",
+      "position": "DL",
+      "name": "L'Cier Luter",
+      "phonetic_name": "LAH-'c'-air LOOT-er",
+      "special_teams": []
+    },
+    {
+      "number": "47",
+      "position": "LS",
+      "name": "Justin Wood",
+      "phonetic_name": "Justin Wood",
+      "special_teams": [
+        "PC",
+        "FG"
+      ]
+    },
+    {
+      "number": "48",
+      "position": "K",
+      "name": "Robert Czeremcha",
+      "phonetic_name": "ROBERT SIR-EM-CHA",
+      "special_teams": [
+        "FG"
+      ]
+    },
+    {
+      "number": "48",
+      "position": "DL",
+      "name": "Richard Nwaukoni",
+      "phonetic_name": "RICHARD NUH-cone-'e'",
+      "special_teams": []
+    },
+    {
+      "number": "51",
+      "position": "OL",
+      "name": "Zaire Flournoy",
+      "phonetic_name": "Zaire Flournoy",
+      "special_teams": [
+        "FG"
+      ]
+    },
+    {
+      "number": "52",
+      "position": "OL",
+      "name": "Akeem Neal",
+      "phonetic_name": "Akeem Neal",
+      "special_teams": []
+    },
+    {
+      "number": "53",
+      "position": "OL",
+      "name": "Nathan Tveit",
+      "phonetic_name": "Nathan Tveit",
+      "special_teams": []
+    },
+    {
+      "number": "54",
+      "position": "OL",
+      "name": "Chad Staley",
+      "phonetic_name": "Chad Staley",
+      "special_teams": []
+    },
+    {
+      "number": "55",
+      "position": "OL",
+      "name": "Daniel Michel",
+      "phonetic_name": "Daniel Michel",
+      "special_teams": [
+        "FG"
+      ]
+    },
+    {
+      "number": "56",
+      "position": "OL",
+      "name": "Marc Michel Jr.",
+      "phonetic_name": "Marc Michel Jr.",
+      "special_teams": []
+    },
+    {
+      "number": "57",
+      "position": "OL",
+      "name": "Knajee Saffold",
+      "phonetic_name": "Knajee Saffold",
+      "special_teams": []
+    },
+    {
+      "number": "58",
+      "position": "OL",
+      "name": "Jeremy Smith",
+      "phonetic_name": "Jeremy Smith",
+      "special_teams": []
+    },
+    {
+      "number": "59",
+      "position": "OL",
+      "name": "Jaheim Buchanon",
+      "phonetic_name": "Jaheim Buchanon",
+      "special_teams": []
+    },
+    {
+      "number": "60",
+      "position": "OL",
+      "name": "Noah Fernandez",
+      "phonetic_name": "Noah Fernandez",
+      "special_teams": []
+    },
+    {
+      "number": "65",
+      "position": "OL",
+      "name": "Julius Pierce",
+      "phonetic_name": "Julius Pierce",
+      "special_teams": []
+    },
+    {
+      "number": "66",
+      "position": "DL",
+      "name": "Aydan Clinton",
+      "phonetic_name": "Aydan Clinton",
+      "special_teams": []
+    },
+    {
+      "number": "66",
+      "position": "OL",
+      "name": "Takaylen Muex",
+      "phonetic_name": "Takaylen Muex",
+      "special_teams": []
+    },
+    {
+      "number": "67",
+      "position": "OL",
+      "name": "Jon Rodriguez",
+      "phonetic_name": "Jon Rodriguez",
+      "special_teams": []
+    },
+    {
+      "number": "68",
+      "position": "DL",
+      "name": "Anthony Smith",
+      "phonetic_name": "Anthony Smith",
+      "special_teams": []
+    },
+    {
+      "number": "69",
+      "position": "LS",
+      "name": "Trent Sims",
+      "phonetic_name": "Trent Sims",
+      "special_teams": []
+    },
+    {
+      "number": "70",
+      "position": "OL",
+      "name": "Mykeal Rabess",
+      "phonetic_name": "Mykeal Rabess",
+      "special_teams": [
+        "FG"
+      ]
+    },
+    {
+      "number": "71",
+      "position": "OL",
+      "name": "Antonio Tripp Jr.",
+      "phonetic_name": "Antonio Tripp Jr.",
+      "special_teams": [
+        "FG"
+      ]
+    },
+    {
+      "number": "72",
+      "position": "OL",
+      "name": "Jackson Schultze",
+      "phonetic_name": "Jackson Schultze",
+      "special_teams": []
+    },
+    {
+      "number": "74",
+      "position": "OL",
+      "name": "Matias Garcia",
+      "phonetic_name": "Matias Garcia",
+      "special_teams": []
+    },
+    {
+      "number": "75",
+      "position": "OL",
+      "name": "Miguel Cedeno",
+      "phonetic_name": "Miguel Cedeno",
+      "special_teams": [
+        "FG"
+      ]
+    },
+    {
+      "number": "76",
+      "position": "OL",
+      "name": "Samson Chazulle",
+      "phonetic_name": "Samson Chazulle",
+      "special_teams": []
+    },
+    {
+      "number": "77",
+      "position": "OL",
+      "name": "Viliami Makahununiu",
+      "phonetic_name": "Viliami Makahununiu",
+      "special_teams": []
+    },
+    {
+      "number": "78",
+      "position": "OL",
+      "name": "Jaleel Davis",
+      "phonetic_name": "Jaleel Davis",
+      "special_teams": [
+        "FG"
+      ]
+    },
+    {
+      "number": "80",
+      "position": "WR",
+      "name": "Andre Brown",
+      "phonetic_name": "Andre Brown",
+      "special_teams": []
+    },
+    {
+      "number": "81",
+      "position": "WR",
+      "name": "Dylan Herman",
+      "phonetic_name": "Dylan Herman",
+      "special_teams": []
+    },
+    {
+      "number": "82",
+      "position": "P/K",
+      "name": "Adrian Hemelt",
+      "phonetic_name": "ADRIAN HE-melt",
+      "special_teams": []
+    },
+    {
+      "number": "84",
+      "position": "WR",
+      "name": "Maguire Anderson",
+      "phonetic_name": "Maguire Anderson",
+      "special_teams": [
+        "KR",
+        "KC",
+        "PR"
+      ]
+    },
+    {
+      "number": "85",
+      "position": "WR",
+      "name": "Donovan Giles",
+      "phonetic_name": "Donovan Giles",
+      "special_teams": []
+    },
+    {
+      "number": "86",
+      "position": "TE",
+      "name": "Justin Cayenne",
+      "phonetic_name": "Justin Cayenne",
+      "special_teams": [
+        "KR",
+        "FG"
+      ]
+    },
+    {
+      "number": "87",
+      "position": "TE",
+      "name": "Braiden Staten",
+      "phonetic_name": "Braiden Staten",
+      "special_teams": [
+        "KR",
+        "PR",
+        "PC"
+      ]
+    },
+    {
+      "number": "88",
+      "position": "TE",
+      "name": "Jackson Verdugo",
+      "phonetic_name": "Jackson Verdugo",
+      "special_teams": [
+        "KR"
+      ]
+    },
+    {
+      "number": "89",
+      "position": "TE",
+      "name": "Sean Burke",
+      "phonetic_name": "Sean Burke",
+      "special_teams": []
+    },
+    {
+      "number": "90",
+      "position": "DL",
+      "name": "Xion Chapman",
+      "phonetic_name": "ZION CHAPMAN",
+      "special_teams": [
+        "PR"
+      ]
+    },
+    {
+      "number": "91",
+      "position": "DL",
+      "name": "Kyrie Samuel",
+      "phonetic_name": "Kyrie Samuel",
+      "special_teams": []
+    },
+    {
+      "number": "92",
+      "position": "DL",
+      "name": "Nick Watson",
+      "phonetic_name": "Nick Watson",
+      "special_teams": []
+    },
+    {
+      "number": "93",
+      "position": "DL",
+      "name": "Matthew Pointer",
+      "phonetic_name": "Matthew Pointer",
+      "special_teams": []
+    },
+    {
+      "number": "95",
+      "position": "DL",
+      "name": "Quaylen Hill",
+      "phonetic_name": "Quaylen Hill",
+      "special_teams": [
+        "FGB"
+      ]
+    },
+    {
+      "number": "97",
+      "position": "DL",
+      "name": "Aaron Armitage",
+      "phonetic_name": "Aaron Armitage",
+      "special_teams": []
+    },
+    {
+      "number": "99",
+      "position": "DL",
+      "name": "Germaine Carter",
+      "phonetic_name": "Germaine Carter",
+      "special_teams": [
+        "PR",
+        "FGB"
+      ]
+    }
+  ]
+}
