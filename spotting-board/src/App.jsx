@@ -1301,6 +1301,54 @@ function App() {
             </div>
           </section>
         )}
+
+        {/* Footer with last updated and commit hash */}
+        <footer className="app-footer no-print" style={{
+          marginTop: '40px',
+          padding: '20px',
+          textAlign: 'center',
+          color: '#ecf0f1',
+          fontSize: '0.85rem',
+          background: 'rgba(26, 37, 47, 0.7)',
+          borderRadius: '8px',
+          border: '1px solid rgba(255,255,255,0.2)',
+          backdropFilter: 'blur(10px)'
+        }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center' }}>
+            <div>
+              Last updated: {/* @ts-ignore */}
+              {typeof __BUILD_TIME__ !== 'undefined' 
+                ? new Date(__BUILD_TIME__).toLocaleString('en-US', { 
+                    timeZone: 'America/New_York',
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: true
+                  }) + ' EST'
+                : new Date().toLocaleString('en-US', { 
+                    timeZone: 'America/New_York',
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: true
+                  }) + ' EST'}
+            </div>
+            <div style={{ 
+              fontFamily: 'monospace',
+              color: '#95a5a6',
+              fontSize: '0.8rem'
+            }}>
+              Commit: {/* @ts-ignore */}
+              {typeof __COMMIT_HASH__ !== 'undefined' ? __COMMIT_HASH__ : 'unknown'}
+            </div>
+          </div>
+        </footer>
       </main>
     </div>
   );
