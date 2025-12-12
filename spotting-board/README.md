@@ -53,6 +53,15 @@ You can manually override a player's automatic categorization by adding a `"flip
 - **Normal**: Player appears on offense/defense based on their position
 - **Flipped**: Add `"flip": "y"` or `"flip": "true"` to put the player on the opposite side
 
+#### **Special Teams Roles**
+You can specify special teams roles for players by adding a `"special_teams"` array:
+- **KR**: Kick Return (🟡 Yellow circle)
+- **KC**: Kick Coverage (🟠 Orange circle)
+- **PR**: Punt Return (🟣 Purple circle)
+- **PC**: Punt Coverage (🔵 Blue circle)
+- **FGB**: Field Goal Block (🔴 Red-Orange circle)
+- **FG**: Field Goal Kick (🟢 Green circle)
+
 **Examples:**
 ```json
 {
@@ -68,22 +77,32 @@ You can manually override a player's automatic categorization by adding a `"flip
       "position": "CB",
       "name": "Jane Smith",
       "phonetic_name": "JANE SMITH",
-      "flip": "y"
+      "flip": "y",
+      "special_teams": ["KR", "PR"]
     },
     {
       "number": 3,
       "position": "WR",
       "name": "Bob Johnson",
       "phonetic_name": "BOB JOHNSON",
-      "flip": "true"
+      "flip": "true",
+      "special_teams": ["P"]
+    },
+    {
+      "number": 4,
+      "position": "K",
+      "name": "Mike Wilson",
+      "phonetic_name": "MIKE WILSON",
+      "special_teams": ["KC", "FG"]
     }
   ]
 }
 ```
 In this example:
 - Player #1 (QB) appears on offense (green) - normal behavior
-- Player #2 (CB) appears on offense (green) instead of defense (red) - flipped with `"flip": "y"`
-- Player #3 (WR) appears on defense (red) instead of offense (green) - flipped with `"flip": "true"`
+- Player #2 (CB) appears on offense (green) instead of defense (red) - flipped with `"flip": "y"`, plus has yellow and purple circles for KR/PR
+- Player #3 (WR) appears on defense (red) instead of offense (green) - flipped with `"flip": "true"`, plus has blue circle for PC
+- Player #4 (K) appears on defense (red) - normal behavior, plus has orange and green circles for KC/FG
 
 ### 3. **Generate Board**
 - Click "Generate Board" to create your spotting board

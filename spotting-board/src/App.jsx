@@ -41,11 +41,18 @@ function App() {
     "Nebraska Cornhuskers",
     "Northwestern Wildcats",
     "Ohio State Buckeyes",
+    "Oregon Ducks",
     "Penn State Nittany Lions",
     "Purdue Boilermakers",
+    "Richmond Spiders",
     "Rutgers Scarlet Knights",
+    "UCLA Bruins",
     "USC Trojans",
-    "Wisconsin Badgers"
+    "Washington Huskies",
+    "William & Mary",
+    "Wisconsin Badgers",
+    "Florida International Panthers",
+    "Youngstown State Penguins"
   ];
 
   // Function to calculate dynamic font size based on content length
@@ -55,18 +62,18 @@ function App() {
     const length = text.length;
     const words = text.split(' ').length;
     
-    // More aggressive font sizing for better visibility
+    // Smaller font sizes to match print layout
     if (length > 20 || words > 3) {
       return Math.max(8, baseFontSize - 4);
     } else if (length > 15 || words > 2) {
-      return Math.max(9, baseFontSize - 3);
+      return Math.max(8, baseFontSize - 4);
     } else if (length > 12 || words > 1) {
-      return Math.max(10, baseFontSize - 2);
+      return Math.max(8, baseFontSize - 4);
     } else if (length > 8) {
-      return Math.max(11, baseFontSize - 1);
+      return Math.max(8, baseFontSize - 4);
     }
     
-    return baseFontSize;
+    return Math.max(8, baseFontSize - 4);
   };
 
   // Function to split name into first and last name for better readability
@@ -100,11 +107,18 @@ function App() {
       "Nebraska Cornhuskers": "./logos/Nebraska_(2025_Logo).svg",
       "Northwestern Wildcats": "./logos/Northwestern_(2025_Logo).svg",
       "Ohio State Buckeyes": "./logos/OhioState.svg",
+      "Oregon Ducks": "./logos/ORE_Primary.svg",
       "Penn State Nittany Lions": "./logos/PennState.svg",
       "Purdue Boilermakers": "./logos/Purdue.svg",
+      "Richmond Spiders": "./logos/Richmond_Spiders_logo.svg.png",
       "Rutgers Scarlet Knights": "./logos/Rutgers.svg",
+      "UCLA Bruins": "./logos/UCLA_Primary.svg",
       "USC Trojans": "./logos/USC_Primary.svg",
-      "Wisconsin Badgers": "./logos/Wisconsin.svg"
+      "Washington Huskies": "./logos/Washington.svg",
+      "William & Mary": "./logos/wm_logo.svg.png",
+      "Wisconsin Badgers": "./logos/Wisconsin.svg",
+      "Florida International Panthers": "./logos/fiu_logo_main.svg",
+      "Youngstown State Penguins": "./logos/Youngstown_State_Penguins_logo.png"
     };
     return logoMap[teamName] || null;
   };
@@ -123,13 +137,54 @@ function App() {
       "Nebraska Cornhuskers": "#E31837", // Nebraska Red
       "Northwestern Wildcats": "#4E2A84", // Northwestern Purple
       "Ohio State Buckeyes": "#BB0000", // Ohio State Scarlet
+      "Oregon Ducks": "#154733", // Oregon Green
       "Penn State Nittany Lions": "#041E42", // Penn State Blue
       "Purdue Boilermakers": "#CEB888", // Purdue Gold
+      "Richmond Spiders": "#DC143C", // Richmond Red
       "Rutgers Scarlet Knights": "#D21034", // Rutgers Scarlet
+      "UCLA Bruins": "#2774AE", // UCLA Blue
       "USC Trojans": "#FFC72C", // USC Gold
-      "Wisconsin Badgers": "#C5050C" // Wisconsin Red
+      "Washington Huskies": "#4B2E83", // Washington Purple
+      "William & Mary": "#115740", // William & Mary Green
+      "Wisconsin Badgers": "#C5050C", // Wisconsin Red
+      "Florida International Panthers": "#081E3F", // FIU Blue
+      "Youngstown State Penguins": "#DC143C" // Youngstown State Red
     };
     return colorMap[teamName] || "#e74c3c"; // Default to current red if team not found
+  };
+
+  // Function to get special teams color based on role
+  const getSpecialTeamsColor = (role) => {
+    const colorMap = {
+      "KR": "#FFD700", // Yellow for Kick Return
+      "KC": "#FF8C00", // Orange for Kick Coverage
+      "PR": "#9370DB", // Purple for Punt Return
+      "PC": "#4169E1", // Blue for Punt Coverage
+      "FGB": "#FF4500", // Red-Orange for Field Goal Block
+      "FG": "#32CD32", // Green for Field Goal Kick
+      "ST": "#000000"  // Black for General Special Teams
+    };
+    return colorMap[role] || "#808080"; // Default to gray if role not found
+  };
+
+  // Function to determine text color for good contrast
+  const getContrastTextColor = (backgroundColor) => {
+    // Special case: ST (black background) always uses white text
+    if (backgroundColor === '#000000') {
+      return '#FFFFFF';
+    }
+    
+    // Convert hex to RGB
+    const hex = backgroundColor.replace('#', '');
+    const r = parseInt(hex.substr(0, 2), 16);
+    const g = parseInt(hex.substr(2, 2), 16);
+    const b = parseInt(hex.substr(4, 2), 16);
+    
+    // Calculate luminance
+    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+    
+    // Return black for light backgrounds, white for dark backgrounds
+    return luminance > 0.5 ? '#000000' : '#FFFFFF';
   };
 
   const filteredTeams = bigTenTeams.filter(team =>
@@ -165,14 +220,32 @@ function App() {
 
   // Build a map: number -> { offense: [], defense: [] }
   const boardMap = {};
-  players.forEach((p) => {
+  
+  // Filter out players marked to ignore
+  const activePlayers = players.filter(p => !(p.ignore === "y" || p.ignore === "Y" || p.ignore === "true" || p.ignore === "True" || p.ignore === "TRUE"));
+  
+  // First pass: categorize all players normally
+  activePlayers.forEach((p) => {
     if (!boardMap[p.number]) boardMap[p.number] = { offense: [], defense: [] };
     
-    // Check if player should be flipped to opposite side
+    // Check if player should be flipped to opposite side (manual override)
     const shouldFlip = p.flip === "y" || p.flip === "Y" || p.flip === "true" || p.flip === "True" || p.flip === "TRUE";
     
     // Determine if player is naturally offensive or defensive
-    const isNaturallyOffensive = ["QB","RB","WR","TE","OL","FB","OT","OG","C"].includes(p.position);
+    const isNaturallyOffensive = (() => {
+      // Check exact matches first
+      if (["QB","RB","WR","TE","OL","FB","OT","OG","C","LS"].includes(p.position)) {
+        return true;
+      }
+      
+      // Check for slash positions (e.g., "QB/WR", "RB/WR")
+      if (p.position.includes('/')) {
+        const positions = p.position.split('/');
+        return positions.some(pos => ["QB","RB","WR","TE","OL","FB","OT","OG","C","LS"].includes(pos));
+      }
+      
+      return false;
+    })();
     
     // Apply flip logic: if flip is "y", put player on opposite side
     if (shouldFlip) {
@@ -191,11 +264,169 @@ function App() {
     }
   });
 
-  // Sort defense arrays to put special teams positions (K, LS, P, SNP, P/K) at the bottom
+  // Second pass: auto-flip special teamers to resolve conflicts
+  Object.entries(boardMap).forEach(([number, cell]) => {
+    const specialTeamsPositions = ["K", "LS", "P", "SNP", "P/K", "K/P", "PK", "KP", "ST"];
+    
+    // Case 1: Players on both offense and defense sides
+    const hasOffense = cell.offense.length > 0;
+    const hasDefense = cell.defense.length > 0;
+    
+    if (hasOffense && hasDefense) {
+      // Check offense side for special teamers
+      const offenseSpecialTeamers = cell.offense.filter(p => 
+        specialTeamsPositions.includes(p.position) && !p.flip // Don't auto-flip if manually set
+      );
+      
+      // Check defense side for special teamers  
+      const defenseSpecialTeamers = cell.defense.filter(p => 
+        specialTeamsPositions.includes(p.position) && !p.flip // Don't auto-flip if manually set
+      );
+      
+      // Log conflict detection
+      if (offenseSpecialTeamers.length > 0 || defenseSpecialTeamers.length > 0) {
+        console.log(`Number ${number} has offense/defense conflict:`, {
+          offense: cell.offense.map(p => `${p.name} (${p.position})`),
+          defense: cell.defense.map(p => `${p.name} (${p.position})`),
+          specialTeamers: {
+            offense: offenseSpecialTeamers.map(p => `${p.name} (${p.position})`),
+            defense: defenseSpecialTeamers.map(p => `${p.name} (${p.position})`)
+          }
+        });
+      }
+      
+      // Auto-flip logic: if we have special teamers on one side and regular players on the other,
+      // flip the special teamers to create better separation
+      if (offenseSpecialTeamers.length > 0 && cell.defense.some(p => !specialTeamsPositions.includes(p.position))) {
+        // Move special teamers from offense to defense
+        offenseSpecialTeamers.forEach(player => {
+          const index = cell.offense.indexOf(player);
+          if (index > -1) {
+            cell.offense.splice(index, 1);
+            cell.defense.push(player);
+            console.log(`🔄 Auto-flipped ${player.name} (${player.position}) from offense to defense for number ${number}`);
+          }
+        });
+      } else if (defenseSpecialTeamers.length > 0 && cell.offense.some(p => !specialTeamsPositions.includes(p.position))) {
+        // Move special teamers from defense to offense
+        defenseSpecialTeamers.forEach(player => {
+          const index = cell.defense.indexOf(player);
+          if (index > -1) {
+            cell.defense.splice(index, 1);
+            cell.offense.push(player);
+            console.log(`🔄 Auto-flipped ${player.name} (${player.position}) from defense to offense for number ${number}`);
+          }
+        });
+      }
+    }
+    
+    // Case 2: Multiple defensive players with same number (including special teamers)
+    if (cell.defense.length > 1) {
+      const defensiveSpecialTeamers = cell.defense.filter(p => 
+        specialTeamsPositions.includes(p.position) && !p.flip // Don't auto-flip if manually set
+      );
+      const regularDefensivePlayers = cell.defense.filter(p => 
+        !specialTeamsPositions.includes(p.position)
+      );
+      
+      // If we have both special teamers and regular defensive players, move special teamers to offense
+      if (defensiveSpecialTeamers.length > 0 && regularDefensivePlayers.length > 0) {
+        console.log(`Number ${number} has defensive conflict:`, {
+          defense: cell.defense.map(p => `${p.name} (${p.position})`),
+          specialTeamers: defensiveSpecialTeamers.map(p => `${p.name} (${p.position})`),
+          regular: regularDefensivePlayers.map(p => `${p.name} (${p.position})`)
+        });
+        
+        defensiveSpecialTeamers.forEach(player => {
+          const index = cell.defense.indexOf(player);
+          if (index > -1) {
+            cell.defense.splice(index, 1);
+            cell.offense.push(player);
+            console.log(`🔄 Auto-flipped ${player.name} (${player.position}) from defense to offense for number ${number} (defensive conflict)`);
+          }
+        });
+      }
+    }
+    
+    // Case 3: Multiple offensive players with same number (including special teamers)
+    if (cell.offense.length > 1) {
+      const offensiveSpecialTeamers = cell.offense.filter(p => 
+        specialTeamsPositions.includes(p.position) && !p.flip
+      );
+      const regularOffensivePlayers = cell.offense.filter(p => 
+        !specialTeamsPositions.includes(p.position)
+      );
+      
+      // If we have both special teamers and regular offensive players, move special teamers to defense
+      // This creates separation (e.g., QB on offense, K on defense)
+      if (offensiveSpecialTeamers.length > 0 && regularOffensivePlayers.length > 0) {
+        console.log(`Number ${number} has offensive conflict:`, {
+          offense: cell.offense.map(p => `${p.name} (${p.position})`),
+          specialTeamers: offensiveSpecialTeamers.map(p => `${p.name} (${p.position})`),
+          regular: regularOffensivePlayers.map(p => `${p.name} (${p.position})`)
+        });
+        
+        offensiveSpecialTeamers.forEach(player => {
+          const index = cell.offense.indexOf(player);
+          if (index > -1) {
+            cell.offense.splice(index, 1);
+            cell.defense.push(player);
+            console.log(`🔄 Auto-flipped ${player.name} (${player.position}) from offense to defense for number ${number} (offensive conflict)`);
+          }
+        });
+      }
+    }
+    
+    // Case 4: Only flip special teamers when there's a real conflict with defensive players
+    if (hasOffense && hasDefense) {
+      const offensiveSpecialTeamers = cell.offense.filter(p => 
+        specialTeamsPositions.includes(p.position) && !p.flip
+      );
+      const defensiveSpecialTeamers = cell.defense.filter(p => 
+        specialTeamsPositions.includes(p.position) && !p.flip
+      );
+      
+      // Only flip defensive special teamers to offense if there are NON-special teams defensive players
+      // This prevents flipping when both players are offensive (e.g., QB + K both on offense)
+      const nonSpecialTeamsDefense = cell.defense.filter(p => !specialTeamsPositions.includes(p.position));
+      
+      if (defensiveSpecialTeamers.length > 0 && nonSpecialTeamsDefense.length > 0) {
+        console.log(`Number ${number} has defensive special teamers with regular defensive players, moving special teamers to offense:`, {
+          offense: cell.offense.map(p => `${p.name} (${p.position})`),
+          defense: cell.defense.map(p => `${p.name} (${p.position})`),
+          specialTeamers: defensiveSpecialTeamers.map(p => `${p.name} (${p.position})`),
+          regularDefense: nonSpecialTeamsDefense.map(p => `${p.name} (${p.position})`)
+        });
+        
+        defensiveSpecialTeamers.forEach(player => {
+          const index = cell.defense.indexOf(player);
+          if (index > -1) {
+            cell.defense.splice(index, 1);
+            cell.offense.push(player);
+            console.log(`🔄 Auto-flipped ${player.name} (${player.position}) from defense to offense for number ${number} (defensive conflict)`);
+          }
+        });
+      }
+    }
+  });
+
+  // Log summary of auto-flipping results
+  let totalAutoFlipped = 0;
+  Object.entries(boardMap).forEach(([number, cell]) => {
+    if (cell.offense.length > 0 && cell.defense.length > 0) {
+      totalAutoFlipped++;
+    }
+  });
+  if (totalAutoFlipped > 0) {
+    console.log(`📊 Auto-flipping complete. ${totalAutoFlipped} numbers have players on both sides.`);
+  }
+
+  // Sort defense arrays to put special teams positions at the bottom
   Object.values(boardMap).forEach(cell => {
     cell.defense.sort((a, b) => {
-      const aIsSpecialTeams = ["K", "LS", "P", "SNP", "P/K"].includes(a.position);
-      const bIsSpecialTeams = ["K", "LS", "P", "SNP", "P/K"].includes(b.position);
+      const specialTeamsPositions = ["K", "LS", "P", "SNP", "P/K", "K/P", "PK", "KP", "ST"];
+      const aIsSpecialTeams = specialTeamsPositions.includes(a.position);
+      const bIsSpecialTeams = specialTeamsPositions.includes(b.position);
       
       if (aIsSpecialTeams && !bIsSpecialTeams) return 1; // a goes after b
       if (!aIsSpecialTeams && bIsSpecialTeams) return -1; // a goes before b
@@ -207,54 +438,65 @@ function App() {
   const grid = [];
   console.log('Rendering grid, teamName:', teamName);
   for (let row = 0; row < 10; row++) {
-    const cells = [];
     for (let col = 0; col < 10; col++) {
       const num = row * 10 + col;
       const cell = boardMap[num] || { offense: [], defense: [] };
       const hasPlayers = cell.offense.length > 0 || cell.defense.length > 0;
       if (!hasPlayers) {
         // Light grey cell for numbers with no players
-        cells.push(
-          <td key={num} style={{ 
+        grid.push(
+          <div key={num} className="grid-cell" style={{ 
             background: '#f0f0f0', 
-            width: 100, 
-            height: 100, 
             border: '1px solid #333',
-            position: 'relative'
+            position: 'relative',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
           }}>
             {getTeamLogo(teamName) && (
               <img 
                 src={getTeamLogo(teamName)} 
                 alt={`${teamName} logo`}
                 style={{
-                  position: 'absolute',
-                  top: '50%',
-                  left: '50%',
-                  transform: 'translate(-50%, -50%)',
                   width: '40px',
                   height: '40px',
                   objectFit: 'contain',
-                  opacity: 0.43,
+                  opacity: 0.32,
                   filter: 'grayscale(100%)',
                   border: 'none',
                   outline: 'none'
                 }}
               />
             )}
-          </td>
+          </div>
         );
       } else {
-        cells.push(
-          <td key={num} style={{ background: 'white', width: 120, height: 140, border: '1px solid #333', verticalAlign: 'top', padding: 0, position: 'relative' }}>
-            <div style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 16, marginTop: 2, height: 20, position: 'relative', zIndex: 1 }}>{num}</div>
-            <div style={{ display: 'flex', flexDirection: 'column', height: 115, position: 'relative' }}>
-              {/* Offense (green, top half only) */}
-              <div style={{ height: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '1px 0' }}>
+        grid.push(
+          <div key={num} className="grid-cell" style={{ 
+            background: 'white', 
+            border: '1px solid #333', 
+            padding: 0, 
+            position: 'relative',
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: '95px'
+          }}>
+            <div style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 14, marginTop: 2, height: 18, position: 'relative', zIndex: 1 }}>{num}</div>
+            <div style={{ display: 'flex', flexDirection: 'column', height: 75, position: 'relative', overflow: 'hidden' }}>
+              {/* Offense (dynamic height) */}
+              <div style={{ 
+                height: cell.offense.length > 0 && cell.defense.length === 0 ? '100%' : '50%',
+                display: 'flex', 
+                flexDirection: 'column', 
+                justifyContent: 'center', 
+                padding: '1px 0' 
+              }}>
                 {cell.offense.length > 0 && (
                   <div style={{ 
                     background: (() => {
                       // Check if the offense array contains only special teams players
-                      const allOffenseSpecialTeams = cell.offense.every(p => ["K", "LS", "P", "SNP", "P/K"].includes(p.position));
+                      const specialTeamsPositions = ["K", "LS", "P", "SNP", "P/K", "K/P", "PK", "KP", "ST"];
+                      const allOffenseSpecialTeams = cell.offense.every(p => specialTeamsPositions.includes(p.position));
                       const onlyOffenseSpecialTeams = allOffenseSpecialTeams && cell.offense.length > 0;
                       
                       if (onlyOffenseSpecialTeams) {
@@ -265,8 +507,8 @@ function App() {
                     })(),
                     color: '#222', 
                     borderRadius: 2, 
-                    margin: '1px 2px', 
-                    padding: '2px 0 1px 0', 
+                    margin: '0px 1px', 
+                    padding: '1px 0', 
                     textAlign: 'center', 
                     fontSize: 8, 
                     fontWeight: 500, 
@@ -281,7 +523,46 @@ function App() {
                   }}>
                     {cell.offense.map((p, i) => (
                       <div key={i} style={{ lineHeight: '1.0', padding: cell.offense.length > 1 ? '0px 1px' : '1px 1px' }}>
-                        <div style={{ fontSize: cell.offense.length > 1 ? 9 : 10, fontWeight: 'bold', marginBottom: cell.offense.length > 1 ? 0 : 1, color: '#000' }}>{p.position}</div>
+                        <div style={{ 
+                          fontSize: cell.offense.length > 1 ? 7 : 7, 
+                          fontWeight: 'bold', 
+                          marginBottom: cell.offense.length > 1 ? 0 : 1, 
+                          color: '#000',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '2px'
+                        }}>
+                          {p.position}
+                          {/* Special Teams Circles - Smaller when 5+ to fit in one row */}
+                          {p.special_teams && p.special_teams.length > 0 && (
+                            <div style={{ display: 'flex', gap: p.special_teams.length >= 5 ? '1px' : '2px', flexWrap: 'nowrap' }}>
+                              {p.special_teams.map((role, roleIndex) => (
+                                <div
+                                  key={roleIndex}
+                                  style={{
+                                    width: p.special_teams.length >= 5 ? '8px' : '12px',
+                                    height: p.special_teams.length >= 5 ? '8px' : '12px',
+                                    borderRadius: '50%',
+                                    backgroundColor: getSpecialTeamsColor(role),
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    fontSize: p.special_teams.length >= 5 ? '4px' : '6px',
+                                    fontWeight: 'bold',
+                                    color: getContrastTextColor(getSpecialTeamsColor(role)),
+                                    border: '1px solid #000',
+                                    lineHeight: '1',
+                                    flexShrink: 0
+                                  }}
+                                  title={role}
+                                >
+                                  {role}
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </div>
                         <div style={{ 
                           fontSize: getDynamicFontSize(p.phonetic_name), 
                           fontWeight: 'bold',
@@ -313,13 +594,22 @@ function App() {
                   </div>
                 )}
               </div>
-              {/* Defense (red, bottom half only) */}
-              <div style={{ height: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '1px 0' }}>
+              {/* Defense (dynamic height) */}
+              <div style={{ 
+                height: cell.defense.length > 0 && cell.offense.length === 0 ? '100%' : '50%',
+                display: 'flex', 
+                flexDirection: 'column', 
+                justifyContent: 'flex-end', 
+                padding: '0',
+                margin: '0',
+                alignItems: 'stretch'
+              }}>
                 {cell.defense.length > 0 && (
                   <div style={{ 
                     background: (() => {
                       // Check if the defense array contains only special teams players
-                      const allDefenseSpecialTeams = cell.defense.every(p => ["K", "LS", "P", "SNP", "P/K"].includes(p.position));
+                      const specialTeamsPositions = ["K", "LS", "P", "SNP", "P/K", "K/P", "PK", "KP", "ST"];
+                      const allDefenseSpecialTeams = cell.defense.every(p => specialTeamsPositions.includes(p.position));
                       const onlyDefenseSpecialTeams = allDefenseSpecialTeams && cell.defense.length > 0;
                       
                       if (onlyDefenseSpecialTeams) {
@@ -330,15 +620,15 @@ function App() {
                     })(),
                     color: '#222', 
                     borderRadius: 2, 
-                    margin: '1px 2px', 
-                    padding: '2px 0 1px 0', 
+                    margin: '0px 1px', 
+                    padding: '1px 0', 
                     textAlign: 'center', 
                     fontSize: 8, 
                     fontWeight: '500', 
                     height: '100%', 
                     display: 'flex', 
                     flexDirection: 'column', 
-                    justifyContent: 'center', 
+                    justifyContent: 'flex-end', 
                     wordWrap: 'break-word', 
                     overflow: 'visible', 
                     position: 'relative', 
@@ -346,7 +636,46 @@ function App() {
                   }}>
                     {cell.defense.map((p, i) => (
                       <div key={i} style={{ lineHeight: '1.0', padding: cell.defense.length > 1 ? '0px 1px' : '1px 1px' }}>
-                        <div style={{ fontSize: cell.defense.length > 1 ? 9 : 10, fontWeight: 'bold', marginBottom: cell.defense.length > 1 ? 0 : 1, color: '#000' }}>{p.position}</div>
+                        <div style={{ 
+                          fontSize: cell.defense.length > 1 ? 7 : 7, 
+                          fontWeight: 'bold', 
+                          marginBottom: cell.defense.length > 1 ? 0 : 1, 
+                          color: '#000',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '2px'
+                        }}>
+                          {p.position}
+                          {/* Special Teams Circles - Smaller when 5+ to fit in one row */}
+                          {p.special_teams && p.special_teams.length > 0 && (
+                            <div style={{ display: 'flex', gap: p.special_teams.length >= 5 ? '1px' : '2px', flexWrap: 'nowrap' }}>
+                              {p.special_teams.map((role, roleIndex) => (
+                                <div
+                                  key={roleIndex}
+                                  style={{
+                                    width: p.special_teams.length >= 5 ? '8px' : '12px',
+                                    height: p.special_teams.length >= 5 ? '8px' : '12px',
+                                    borderRadius: '50%',
+                                    backgroundColor: getSpecialTeamsColor(role),
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    fontSize: p.special_teams.length >= 5 ? '4px' : '6px',
+                                    fontWeight: 'bold',
+                                    color: getContrastTextColor(getSpecialTeamsColor(role)),
+                                    border: '1px solid #000',
+                                    lineHeight: '1',
+                                    flexShrink: 0
+                                  }}
+                                  title={role}
+                                >
+                                  {role}
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </div>
                         <div style={{ 
                           fontSize: getDynamicFontSize(p.phonetic_name), 
                           fontWeight: 'bold',
@@ -379,11 +708,10 @@ function App() {
                 )}
               </div>
             </div>
-          </td>
+          </div>
         );
       }
     }
-    grid.push(<tr key={row}>{cells}</tr>);
   }
 
   return (
@@ -393,8 +721,38 @@ function App() {
       margin: 0
     }}>
       {/* Print-only styles */}
+      {/* 
+      ⚠️ CRITICAL PRINT LAYOUT RULES - NEVER BREAK THESE ⚠️
+      
+      These dimensions are PERFECT for single-page portrait printing:
+      - Grid: Responsive (CSS Grid with 1fr units, adapts to paper size)
+      - Page margins: 0 (edge-to-edge)
+      - Table margins: 0 (no centering)
+      
+      🚫 NEVER CHANGE:
+      - Grid height: calc(100vh - 200px) (responsive to paper size)
+      - Grid width: 100% (fills available space)
+      - CSS Grid: 10×10 with 1fr units (responsive sizing)
+      - Page margins: 0 (any margins = wasted space)
+      - Table margins: 0 (any centering = horizontal issues)
+      
+      ✅ ALWAYS MAINTAIN:
+      - 10×10 grid (100 cells total)
+      - Responsive dimensions (adapts to paper size)
+      - Zero margins and padding
+      - Print CSS matches screen CSS exactly
+      
+      If you need to adjust anything, ONLY modify:
+      - Font sizes (within cells)
+      - Special teams circle sizes
+      - Content spacing (within cells)
+      - Colors and styling
+      
+      NEVER touch the core dimensions above!
+      */}
       <style>
         {`
+          /* Print CSS - Updated to fix defensive section bottom alignment - v2.1 */
           @media print {
             .no-print { display: none !important; }
             .print-only { display: block !important; }
@@ -402,6 +760,10 @@ function App() {
               margin: 0 !important; 
               padding: 0 !important; 
               background: white !important;
+            }
+            @page {
+              margin: 0 !important;
+              size: legal !important;
             }
             * { 
               -webkit-print-color-adjust: exact !important;
@@ -421,47 +783,119 @@ function App() {
               backdrop-filter: none !important;
             }
             .board-title {
-              margin: 10px 0 !important;
-              padding: 10px 0 !important;
-              font-size: 1.5rem !important;
+              margin: 5px 0 !important;
+              padding: 5px 0 !important;
+              font-size: 1.2rem !important;
+              display: flex !important;
+              align-items: center !important;
+              justify-content: center !important;
+              gap: 16px !important;
             }
-            .board-table-wrapper {
+            .board-grid-wrapper {
               overflow: visible !important;
             }
-            .board-table {
-              border-collapse: separate !important;
-              border-spacing: 0px !important;
+            .board-grid {
+              display: grid !important;
+              grid-template-columns: repeat(10, 1fr) !important;
+              grid-template-rows: repeat(10, 1fr) !important;
               width: 100% !important;
-              max-width: none !important;
+              max-width: 100% !important;
+              height: calc(100vh - 200px) !important;
               margin: 0 !important;
-              table-layout: fixed;
+              gap: 0px !important;
+              border: 1px solid #333 !important;
             }
-            .board-table td {
+            .grid-cell {
               page-break-inside: avoid;
-              width: 10% !important;
-              height: 100px !important;
+              padding: 0 !important;
+              margin: 0 !important;
+              border: 1px solid #333 !important;
+              position: relative !important;
+              /* Force cell to fill grid space properly */
+              height: 100% !important;
+              min-height: 95px !important;
+              display: flex !important;
+              flex-direction: column !important;
             }
-            .board-table td[style*="background: #f0f0f0"] {
+            .grid-cell > div:first-child {
+              height: 18px !important;
+              margin-top: 2px !important;
+              font-size: 14px !important;
+            }
+            .grid-cell > div:last-child {
+              height: 100% !important;
+              margin: 0 !important;
+              padding: 0 !important;
+              display: flex !important;
+              flex-direction: column !important;
+              box-sizing: border-box !important;
+              /* Force to fill entire cell space */
+              min-height: 75px !important;
+              flex: 1 !important;
+            }
+            .grid-cell > div > div {
+              margin: 0 !important;
+              padding: 0 !important;
+            }
+            /* Offense section - matches screen behavior */
+            .grid-cell > div:last-child > div:first-child {
+              display: flex !important;
+              flex-direction: column !important;
+              justify-content: flex-start !important;
+              padding: 1px 0 !important;
+              box-sizing: border-box !important;
+              min-height: 0 !important;
+            }
+            /* Defense section - PRESERVE JavaScript structure */
+            .grid-cell > div:last-child > div:last-child {
+              /* Let JavaScript handle this - no overrides */
+            }
+            /* When both offense and defense exist, they should be 50/50 */
+            .grid-cell > div:last-child > div:first-child:not(:only-child) {
+              flex: 1 !important;
+            }
+            .grid-cell > div:last-child > div:last-child:not(:only-child) {
+              flex: 1 !important;
+            }
+            /* When only defense exists, it should take 100% */
+            .grid-cell > div:last-child > div:last-child:only-child {
+              flex: 1 !important;
+              height: 100% !important;
+            }
+            /* When only offense exists, it should take 100% */
+            .grid-cell > div:last-child > div:first-child:only-child {
+              flex: 1 !important;
+              height: 100% !important;
+            }
+            /* Defensive sections - PRESERVE JavaScript structure */
+            .grid-cell > div:last-child > div:last-child > div {
+              /* Let JavaScript handle this - no overrides */
+            }
+            /* Offensive sections - PRESERVE JavaScript structure */
+            .grid-cell > div:last-child > div:first-child > div {
+              /* Let JavaScript handle this - no overrides */
+            }
+            .grid-cell[style*="background: #f0f0f0"] {
               background: #f0f0f0 !important;
               -webkit-print-color-adjust: exact !important;
               color-adjust: exact !important;
             }
-            .board-table td[style*="background: white"] {
+            .grid-cell[style*="background: white"] {
               background: white !important;
               -webkit-print-color-adjust: exact !important;
               color-adjust: exact !important;
             }
-            .board-table div[style*="background: #c8f7c5"] {
+            .grid-cell div[style*="background: #c8f7c5"] {
               background: #c8f7c5 !important;
               -webkit-print-color-adjust: exact !important;
               color-adjust: exact !important;
             }
-            .board-table div[style*="background: #f7c5c5"] {
+            .grid-cell div[style*="background: #f7c5c5"] {
               background: #f7c5c5 !important;
               -webkit-print-color-adjust: exact !important;
               color-adjust: exact !important;
             }
-            .board-table div[style*="background: rgba(255, 255, 200"] {
+            .grid-cell div[style*="background: rgba(255, 255, 200"] {
               background: #ffffc8 !important;
               -webkit-print-color-adjust: exact !important;
               color-adjust: exact !important;
@@ -807,14 +1241,20 @@ function App() {
                   />
                 ))}
               </h2>
-              <div className="board-table-wrapper" style={{ overflowX: 'auto' }}>
-                <table className="board-table" style={{ 
-                  borderCollapse: 'separate', 
-                  borderSpacing: '0px',
-                  margin: '0 auto'
+              <div className="board-grid-wrapper" style={{ overflowX: 'auto' }}>
+                <div className="board-grid" style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(10, 1fr)',
+                  gridTemplateRows: 'repeat(10, 1fr)',
+                  width: '100%',
+                  maxWidth: '800px',
+                  height: 'min(800px, 90vh)',
+                  margin: '0 auto',
+                  gap: '0px',
+                  border: '1px solid #333'
                 }}>
-                  <tbody className="board-grid">{grid}</tbody>
-                </table>
+                  {grid}
+                </div>
               </div>
               
               {/* Bottom Title Bar */}
